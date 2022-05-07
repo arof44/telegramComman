@@ -16,7 +16,7 @@
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
-                           <b>Bank Sampah</b>
+                           <b>Inventory</b>
                         </span>
                     </a>
                     <!-- ============================================================== -->

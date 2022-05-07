@@ -45,19 +45,9 @@
                                 <!-- title -->
                                 <div class="d-md-flex">
                                     <div>
-                                        <h4 class="card-title">Top 5 Nasbah</h4>
-                                        <h5 class="card-subtitle">Urutan nasbah dengan skor penyetoran sampah</h5>
+                                        <h4 class="card-title">Top 5 Pelanggan</h4>
+                                        <h5 class="card-subtitle">Urutan pelanggan dengan skor pembeliam barang</h5>
                                     </div>
-                                    <!-- <div class="ms-auto">
-                                        <div class="dl">
-                                            <select class="form-select shadow-none">
-                                                <option value="0" selected>Monthly</option>
-                                                <option value="1">Daily</option>
-                                                <option value="2">Weekly</option>
-                                                <option value="3">Yearly</option>
-                                            </select>
-                                        </div>
-                                    </div> -->
                                 </div>
                                 <!-- title -->
                                 <div class="table-responsive">
@@ -67,7 +57,7 @@
                                                 <th class="border-top-0">Nama Nasbah</th>
                                                 <th class="border-top-0">Alamat</th>
                                                 <th class="border-top-0">No Tlp</th>
-                                                <th class="border-top-0">Total Stor</th>
+                                                <th class="border-top-0">Total Beli</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -95,18 +85,16 @@
                         </div>
                     </div>
                 </div>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+        </div>
+    </div>
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Sampah Populer</h4>
-                                <h6 class="card-subtitle">Paling banyak di stor</h6>
+                                <h4 class="card-title">Barang Populer</h4>
+                                <h6 class="card-subtitle">Paling banyak di beli</h6>
                                 <div class="mt-5 pb-3 d-flex align-items-center">
-                                   
-                                        <i class="fa fa-trash" ></i>
-
+                                <i class="fa fa-trash" ></i>
                                     <div class="ms-3">
                                         <h5 class="mb-0 fw-bold">Sampah Plastik</h5>
                                         <span class="text-muted fs-6">Total</span>
@@ -115,53 +103,12 @@
                                         <span class="badge bg-light text-muted">+68%</span>
                                     </div>
                                 </div>
-                                <div class="py-3 d-flex align-items-center">
-                                   
-                                        <i class="fa fa-trash" ></i>
-                                   
-                                    <div class="ms-3">
-                                        <h5 class="mb-0 fw-bold">Sampah Kertas</h5>
-                                        <span class="text-muted fs-6">Totak</span>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <span class="badge bg-light text-muted">+68%</span>
-                                    </div>
-                                </div>
-                                <div class="py-3 d-flex align-items-center">
-                                   
-                                       <i class="fa fa-trash" ></i>
-                                    
-                                    <div class="ms-3">
-                                        <h5 class="mb-0 fw-bold">Sampah Logam</h5>
-                                        <span class="text-muted fs-6">Total</span>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <span class="badge bg-light text-muted">+68%</span>
-                                    </div>
-                                </div>
-                                <div class="py-3 d-flex align-items-center">
-                                   
-                                        <i class="fa fa-trash" ></i>
-                                  
-                                    <div class="ms-3">
-                                        <h5 class="mb-0 fw-bold">Sampah Botol & Kaca</h5>
-                                        <span class="text-muted fs-6">Total</span>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <span class="badge bg-light text-muted">+15%</span>
-                                    </div>
-                                </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- ============================================================== -->
-                <!-- Sales chart -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Table -->
-                <!-- ============================================================== -->
+
                 <div class="row">
                     <!-- column -->
                     <div class="col-12">
@@ -170,8 +117,8 @@
                                 <!-- title -->
                                 <div class="d-md-flex">
                                     <div>
-                                        <h4 class="card-title">Top 5 Sopir</h4>
-                                        <h5 class="card-subtitle">Urutan nasbah dengan skor pengambilan sampah</h5>
+                                        <h4 class="card-title">Top 5 Pemasok</h4>
+                                        <h5 class="card-subtitle">Urutan pemasok dengan skor pengambilan sampah</h5>
                                     </div>
                                 </div>
                                 <!-- title -->
@@ -179,10 +126,10 @@
                                     <table class="table mb-0 table-hover align-middle text-nowrap">
                                         <thead>
                                             <tr>
-                                                <th class="border-top-0">Nama Sopir</th>
+                                                <th class="border-top-0">Nama Pemasok</th>
                                                 <th class="border-top-0">Alamat</th>
                                                 <th class="border-top-0">No Tlp</th>
-                                                <th class="border-top-0">Total Pickup</th>
+                                                <th class="border-top-0">Total Pasok</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -209,14 +156,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- Table -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Recent comment and chats -->
-                <!-- ============================================================== -->
-                
+                </div>    
             </div>
            @include('layouts.footer')
         </div>

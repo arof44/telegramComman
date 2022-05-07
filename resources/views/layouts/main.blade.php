@@ -10,7 +10,7 @@
     <meta name="description"
         content="Flexy Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>Bank Sampah Dashboard Page</title>
+    <title>Inventory Dashboard Page</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/Flexy-admin-lite/" />
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{url('flexy/assets/images/favicon.png')}}">

@@ -15,35 +15,42 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{url('nasabah')}}" aria-expanded="false">
                                 <i class="fa fa-users"></i>
-                                <span class="hide-menu">Nasabah</span>
+                                <span class="hide-menu">Pengguna</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{url('sopir')}}" aria-expanded="false">
                                 <i class="fa fa-users"></i>
-                                <span class="hide-menu">Sopir</span>
+                                <span class="hide-menu">Pemasok</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{url('sopir')}}" aria-expanded="false">
+                                <i class="fa fa-users"></i>
+                                <span class="hide-menu">Pelanggan</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{url('sampah')}}" aria-expanded="false">
-                                <i class="fa fa-trash"></i>
-                                <span class="hide-menu">Sampah</span>
+                                <i class="fa fa-list"></i>
+                                <span class="hide-menu">Kategori Barang</span>
                             </a>
                         </li>
                          <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{url('jadwal')}}" aria-expanded="false">
-                                <i class="fa fa-calendar"></i>
-                                <span class="hide-menu">Jadwal Pickup</span>
+                               <i class="fa fa-book"></i>
+                                <span class="hide-menu">Data Barang</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="pages-profile.html" aria-expanded="false">
-                                <i class="fa fa-file"></i>
-                                <span class="hide-menu">Laporan Pickup</span>
+                                <i class="fa fa-exchange"></i>
+                                <span class="hide-menu">Transaksi</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
