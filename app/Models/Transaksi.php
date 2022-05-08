@@ -39,7 +39,6 @@ class Transaksi
                 'grandtotal'=>$request->grandtotal[$key],
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
             ]);
-
             DB::table('barang_stock')->insert([
                 'id_barang'=>$value,
                 'id_transaksi'=>$data,
@@ -50,6 +49,12 @@ class Transaksi
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
             ]);
             $grandtotal += $request->grandtotal[$key];
+
+            //update stock on master 
+            $stokMasuk =  DB::table('barang_stock')->where('id_barang',$value)->where('type','m')->sum('qty');
+            $stokKeluar =  DB::table('barang_stock')->where('id_barang',$value)->where('type','k')->sum('qty');
+            $stokFix = $stokMasuk - $stokKeluar;
+            DB::table('barang')->where('id',$value)->update(['stock'=>$stokFix]);
         }
         DB::table('transaksi')->where('id',$id)->update(['grandtotal'=>$grandtotal]);
     }
@@ -76,7 +81,6 @@ class Transaksi
                 'grandtotal'=>$request->grandtotal[$key],
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
             ]);
-
             DB::table('barang_stock')->insert([
                 'id_barang'=>$value,
                 'id_transaksi'=>$data,
@@ -87,6 +91,12 @@ class Transaksi
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
             ]);
             $grandtotal += $request->grandtotal[$key];
+
+            //update stock on master 
+            $stokMasuk =  DB::table('barang_stock')->where('id_barang',$value)->where('type','m')->sum('qty');
+            $stokKeluar =  DB::table('barang_stock')->where('id_barang',$value)->where('type','k')->sum('qty');
+            $stokFix = $stokMasuk - $stokKeluar;
+            DB::table('barang')->where('id',$value)->update(['stock'=>$stokFix]);
         }
         DB::table('transaksi')->where('id',$id)->update(['grandtotal'=>$grandtotal]);
     }
@@ -112,7 +122,6 @@ class Transaksi
                 'grandtotal'=>$request->grandtotal[$key],
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
             ]);
-
             DB::table('barang_stock')->insert([
                 'id_barang'=>$value,
                 'id_transaksi'=>$data,
@@ -123,6 +132,12 @@ class Transaksi
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
             ]);
             $grandtotal += $request->grandtotal[$key];
+
+            //update stock on master 
+            $stokMasuk =  DB::table('barang_stock')->where('id_barang',$value)->where('type','m')->sum('qty');
+            $stokKeluar =  DB::table('barang_stock')->where('id_barang',$value)->where('type','k')->sum('qty');
+            $stokFix = $stokMasuk - $stokKeluar;
+            DB::table('barang')->where('id',$value)->update(['stock'=>$stokFix]);
         }
         DB::table('transaksi')->where('id',$id)->update(['grandtotal'=>$grandtotal]);
     }
@@ -149,7 +164,6 @@ class Transaksi
                 'grandtotal'=>$request->grandtotal[$key],
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
             ]);
-
             DB::table('barang_stock')->insert([
                 'id_barang'=>$value,
                 'id_transaksi'=>$data,
@@ -160,12 +174,13 @@ class Transaksi
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
             ]);
             $grandtotal += $request->grandtotal[$key];
+
+            //update stock on master 
+            $stokMasuk =  DB::table('barang_stock')->where('id_barang',$value)->where('type','m')->sum('qty');
+            $stokKeluar =  DB::table('barang_stock')->where('id_barang',$value)->where('type','k')->sum('qty');
+            $stokFix = $stokMasuk - $stokKeluar;
+            DB::table('barang')->where('id',$value)->update(['stock'=>$stokFix]);
         }
         DB::table('transaksi')->where('id',$id)->update(['grandtotal'=>$grandtotal]);
     }
-
-    // public function delete($id)
-    // {
-
-    // }
 }
