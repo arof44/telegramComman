@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Pelanggan;
 class PelangganController extends Controller
 {
     /**
@@ -23,6 +23,29 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        return view('dashboard.home');
+        $pelanggan = new Pelanggan();
+        $data = $pelanggan->get();
+        return view('dashboard.pelanggan.index',compact('data'));
+    }
+
+    public function create(Request $request)
+    {
+        $pelanggan = new Pelanggan();
+        $pelanggan->create($request);
+        return redirect()->back();
+    }
+
+    public function update(Request $request,$id)
+    {
+        $pelanggan = new Pelanggan();
+        $pelanggan->update($request,$id);
+        return redirect()->back();
+    }
+
+    public function delete($id)
+    {
+        $pelanggan = new Pelanggan();
+        $pelanggan->delete($id);
+        return redirect()->back();
     }
 }

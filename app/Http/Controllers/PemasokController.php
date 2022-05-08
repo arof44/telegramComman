@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Pemasok;
 class PemasokController extends Controller
 {
     /**
@@ -23,6 +23,29 @@ class PemasokController extends Controller
      */
     public function index()
     {
-        return view('dashboard.home');
+        $pemasok = new Pemasok();
+        $data = $pemasok->get();
+        return view('dashboard.pemasok.index',compact('data'));
+    }
+
+    public function create(Request $request)
+    {
+        $pemasok = new Pemasok();
+        $pemasok->create($request);
+        return redirect()->back();
+    }
+
+    public function update(Request $request,$id)
+    {
+        $pemasok = new Pemasok();
+        $pemasok->update($request,$id);
+        return redirect()->back();
+    }
+
+    public function delete($id)
+    {
+        $pemasok = new Pemasok();
+        $pemasok->delete($id);
+        return redirect()->back();
     }
 }
