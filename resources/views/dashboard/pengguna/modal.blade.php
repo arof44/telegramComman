@@ -18,7 +18,7 @@
                         <label for="username">Role</label>
                         <select class="form-control" name="role" required>
                             <option value="admin" {{$item->role == 'admin'?'selected':''}}>Admin</option>
-                            <option value="pengurus" {{$item->role == 'pengurus'?'selected':''}}>Pengguna</option>
+                            <option value="pengurus" {{$item->role == 'pengurus'?'selected':''}}>Pengurus</option>
                         </select>
                       </div>
                       <div class="form-group first">

@@ -110,7 +110,7 @@
                         <label for="username">Role</label>
                         <select class="form-control" name="role" required>
                             <option value="admin">Admin</option>
-                            <option value="pengurus">Pengguna</option>
+                            <option value="pengurus">Pengurus</option>
                         </select>
                       </div>
                       <div class="form-group first">
