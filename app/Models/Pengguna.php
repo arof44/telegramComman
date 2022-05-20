@@ -7,12 +7,17 @@ class Pengguna
 {
 	public function get()
     {
-    	$data = DB::table('users')->get();
+    	$data = DB::table('users')->where('id','!=',0)->get();
     	return $data;
     }
 
     public function create($request)
     {
+        $email = DB::table('users')->where('email',$request->email)->first();
+        if($email)
+        {
+            return false;
+        }
     	$data = DB::table('users')->insert([
     		'name'=>$request->name,
     		'email'=>$request->email,

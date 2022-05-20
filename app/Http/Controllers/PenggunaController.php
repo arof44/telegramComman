@@ -21,22 +21,31 @@ class PenggunaController extends Controller
     public function create(Request $request)
     {
         $pengguna = new Pengguna();
-        $pengguna->create($request);
-        return redirect()->back();
+        $input = $pengguna->create($request);
+        if(!$input){
+            return redirect()->back()->with('error','Gagal add pengguna');
+        }
+        return redirect()->back()->with('success','Success add pengguna');
     }
 
     public function update(Request $request,$id)
     {
         $pengguna = new Pengguna();
-        $pengguna->update($request,$id);
-        return redirect()->back();
+        $input = $pengguna->update($request,$id);
+        if(!$input){
+            return redirect()->back()->with('error','Gagal update pengguna');
+        }
+        return redirect()->back()->with('success','Success update pengguna');
     }
 
     public function delete($id)
     {
         $pengguna = new Pengguna();
-        $pengguna->delete($id);
-        return redirect()->back();
+        $input = $pengguna->delete($id);
+        if(!$input){
+            return redirect()->back()->with('error','Gagal delete pengguna');
+        }
+        return redirect()->back()->with('success','Success delete pengguna');
     }
     
 }

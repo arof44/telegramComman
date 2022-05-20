@@ -7,7 +7,7 @@ class Kategori
 {
 	public function get()
     {
-    	$data = DB::table('kategori')->get();
+    	$data = DB::table('kategori')->where('id','!=',0)->get();
     	return $data;
     }
 

@@ -59,7 +59,7 @@ Route::post('/kategori_update/{id}', [KategoriController::class, 'update']);
 Route::get('/barang', [BarangController::class, 'index']);
 Route::get('/barang_delete/{id}', [KategoriController::class, 'delete']);
 Route::post('/barang_insert', [KategoriController::class, 'create']);
-Route::post('/barang_update/{id}', [KategoriController::class, 'update'])
+Route::post('/barang_update/{id}', [KategoriController::class, 'update']);
 //transaksi
 Route::get('/transaksi', [LaporanController::class, 'index']);
 //laporan

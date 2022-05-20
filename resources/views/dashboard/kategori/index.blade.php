@@ -11,16 +11,16 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 d-flex align-items-center">
                               <li class="breadcrumb-item"><a href="index.html" class="link"><i class="mdi mdi-home-outline fs-4"></i></a></li>
-                              <li class="breadcrumb-item active" aria-current="page">Pengguna</li>
+                              <li class="breadcrumb-item active" aria-current="page">Kategori</li>
                             </ol>
                           </nav>
-                        <h1 class="mb-0 fw-bold">Pengguna</h1> 
+                        <h1 class="mb-0 fw-bold">Kategori</h1> 
                     </div>
                      <div class="col-6">
                         <div class="text-end upgrade-btn">
                             <a href="#" class="btn btn-primary text-white" 
-                            data-bs-toggle="modal" data-bs-target="#tambahPengguna">
-                                Tambah Data Pengguna
+                            data-bs-toggle="modal" data-bs-target="#tambahKategori">
+                                Tambah Data Kategori
                             </a>
                         </div>
                     </div>
@@ -43,15 +43,13 @@
                      <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h6 class="card-subtitle">Daftar pengguna yang terdaftar di sistem</h6>
+                                <h6 class="card-subtitle">Daftar kategori yang terdaftar di sistem</h6>
                                 <div class="table-responsive">
                                     <table class="table" id="example" class="display" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Nama</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Role</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
@@ -59,26 +57,24 @@
                                             @foreach($data as $key => $item)
                                             <tr>
                                                 <th scope="row">{{$key+1}}</th>
-                                                <td>{{$item->name}}</td>
-                                                <td>{{$item->email}}</td>
-                                                <td>{{$item->role}}</td>
+                                                <td>{{$item->nama}}</td>
                                                 <td>
                                                     <a href="#" class="btn-info btn-sm"
                                                     data-bs-toggle="modal" 
-                                                    data-bs-target="#editPengguna{{$item->id}}">
+                                                    data-bs-target="#editKategori{{$item->id}}">
                                                         <i class="fa fa-edit" style="color: white;"></i>
                                                     </a>
                                                     &nbsp;
                                                     <a href="#" class="btn-danger btn-sm"
                                                     data-bs-toggle="modal" 
-                                                    data-bs-target="#deletePengguna{{$item->id}}">
+                                                    data-bs-target="#deleteKategori{{$item->id}}">
                                                         <i class="fa fa-trash" style="color: white;"></i>
                                                     </a>
                                                 </td>
                                             </tr>
-                                            <!-- modal editPengguna-->
-                                            @include('dashboard.pengguna.modal')
-                                            <!-- end modal tambahPengguna -->
+                                            <!-- modal editKategori-->
+                                            @include('dashboard.kategori.modal')
+                                            <!-- end modal tambahKategori -->
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -89,37 +85,22 @@
                 </div>
             </div>
 
-            <!-- modal tambahPengguna-->
-            <div class="modal" id="tambahPengguna">
+            <!-- modal tambahKategori-->
+            <div class="modal" id="tambahKategori">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                <form action="{{url('pengguna_insert')}}" method="post">
+                <form action="{{url('kategori_insert')}}" method="post">
                 @csrf
                   <!-- Modal Header -->
                   <div class="modal-header">
-                    <h4 class="modal-title">Tambah Pengguna</h4>
+                    <h4 class="modal-title">Tambah Kategori</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                   </div>
                   <!-- Modal body -->
                 <div class="modal-body">
                      <div class="form-group first">
-                        <label for="username">Nama Lengkap</label>
-                        <input type="text" class="form-control" placeholder="Juan Kartolo" id="username" name="name" required>
-                      </div>
-                      <div class="form-group first">
-                        <label for="username">Role</label>
-                        <select class="form-control" name="role" required>
-                            <option value="admin">Admin</option>
-                            <option value="pengurus">Pengguna</option>
-                        </select>
-                      </div>
-                      <div class="form-group first">
-                        <label for="username">Email</label>
-                        <input type="email" class="form-control" placeholder="email@gmail.com" id="username" name="email" required>
-                      </div>
-                      <div class="form-group last mb-3">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" placeholder="Password" id="password" required name="password_pengguna">
+                        <label for="username">Nama</label>
+                        <input type="text" class="form-control" placeholder="Bahan Baku" id="username" name="nama" required>
                       </div>
                  </div>
                   <!-- Modal footer -->
@@ -131,7 +112,7 @@
                 </div>
               </div>
             </div>
-            <!-- end modal tambahPengguna -->
+            <!-- end modal tambahKategori -->
            @include('layouts.footer')
         </div>
 @endsection

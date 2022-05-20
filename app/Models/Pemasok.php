@@ -7,7 +7,7 @@ class Pemasok
 {
 	public function get()
     {
-    	$data = DB::table('pemasok')->get();
+    	$data = DB::table('pemasok')->where('id','!=',0)->get();
     	return $data;
     }
 

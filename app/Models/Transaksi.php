@@ -8,13 +8,8 @@ class Transaksi
 {
 	public function get()
     {
-        $pemasok = DB::table('transaksi as trs')
-        ->join('pemasok as pm','pm.id','=','trs.id_pemasok')
-        ->get();
-        $pelanggan = DB::table('transaksi as trs')
-        ->join('pelanggan as plg','plg.id','=','trs.id_pelanggan')
-        ->get();
-        $arr = ['pemasok'=>$pemasok,'pelanggan'=>$pelanggan];
+        
+        $arr = DB::table('transaksi')->get();
         return $arr;
     }
 
@@ -25,7 +20,7 @@ class Transaksi
             'no_transaksi'=>$no,
             'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
             'id_user'=>Auth::user()->id,
-            'id_pelanggan'=>$request->id_pelanggan,
+            //'id_pelanggan'=>$request->id_pelanggan,
             'status'=>$request->status,
             'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString()
         ]);
@@ -65,7 +60,7 @@ class Transaksi
             'no_transaksi'=>$no,
             'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
             'id_user'=>Auth::user()->id,
-            'id_pelanggan'=>$request->id_pelanggan,
+            //'id_pelanggan'=>$request->id_pelanggan,
             'status'=>$request->status,
             'updated_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString()
         ]);

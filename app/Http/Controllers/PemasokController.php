@@ -31,21 +31,30 @@ class PemasokController extends Controller
     public function create(Request $request)
     {
         $pemasok = new Pemasok();
-        $pemasok->create($request);
-        return redirect()->back();
+        $input = $pemasok->create($request);
+        if(!$input){
+            return redirect()->back()->with('error','Gagal add pemasok');
+        }
+        return redirect()->back()->with('success','Success add pemasok');
     }
 
     public function update(Request $request,$id)
     {
         $pemasok = new Pemasok();
-        $pemasok->update($request,$id);
-        return redirect()->back();
+        $input = $pemasok->update($request,$id);
+        if(!$input){
+            return redirect()->back()->with('error','Gagal add pemasok');
+        }
+        return redirect()->back()->with('success','Success add pemasok');
     }
 
     public function delete($id)
     {
         $pemasok = new Pemasok();
-        $pemasok->delete($id);
-        return redirect()->back();
+        $input = $pemasok->delete($id);
+        if(!$input){
+            return redirect()->back()->with('error','Gagal add pemasok');
+        }
+        return redirect()->back()->with('success','Success add pemasok');
     }
 }
