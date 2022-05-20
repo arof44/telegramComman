@@ -119,7 +119,7 @@
                       </div>
                       <div class="form-group last mb-3">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" placeholder="Password" id="password" required name="password_pengguna">
+                        <input type="password" class="form-control" placeholder="Password" id="password" required name="password">
                       </div>
                  </div>
                   <!-- Modal footer -->

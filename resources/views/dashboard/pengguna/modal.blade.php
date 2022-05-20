@@ -27,7 +27,7 @@
                       </div>
                       <div class="form-group last mb-3">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" placeholder="Password" id="password"  name="password_nasabah">
+                        <input type="password" class="form-control" placeholder="Password" id="password"  name="password">
                         <input type="hidden" name="old_password" value="{{$item->password}}">
                         <small style="color: red;">Kosongi password jika tidak diupdate!</small>
                       </div>

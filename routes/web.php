@@ -57,9 +57,9 @@ Route::post('/kategori_insert', [KategoriController::class, 'create']);
 Route::post('/kategori_update/{id}', [KategoriController::class, 'update']);
 //barang
 Route::get('/barang', [BarangController::class, 'index']);
-Route::get('/barang_delete/{id}', [KategoriController::class, 'delete']);
-Route::post('/barang_insert', [KategoriController::class, 'create']);
-Route::post('/barang_update/{id}', [KategoriController::class, 'update']);
+Route::get('/barang_delete/{id}', [BarangController::class, 'delete']);
+Route::post('/barang_insert', [BarangController::class, 'create']);
+Route::post('/barang_update/{id}', [BarangController::class, 'update']);
 //transaksi
 Route::get('/transaksi', [LaporanController::class, 'index']);
 //laporan
