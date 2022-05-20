@@ -19,7 +19,7 @@
                      <div class="col-2">
                         <div class="text-end upgrade-btn">
                             <a href="#" class="btn btn-danger btn-sm  text-white" 
-                            data-bs-toggle="modal" data-bs-target="#tambahBarang">
+                            data-bs-toggle="modal" data-bs-target="#">
                                 - Barang Keluar
                             </a>
                         </div>
@@ -28,7 +28,7 @@
                         <div class="text-end upgrade-btn">
 
                             <a href="#" class="btn btn-success btn-sm  text-white" 
-                            data-bs-toggle="modal" data-bs-target="#tambahBarang">
+                            data-bs-toggle="modal" data-bs-target="#">
                                 + Barang Masuk
                             </a>
                         </div>
