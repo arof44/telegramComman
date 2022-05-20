@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Bulan Mei 2022 pada 09.09
+-- Waktu pembuatan: 20 Bulan Mei 2022 pada 07.43
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.27
 
@@ -42,7 +42,7 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id`, `id_kategori`, `nama`, `harga`, `stock`, `created_at`, `updated_at`) VALUES
-(0, 0, 'Data was deleted!', 0, 0, '2022-05-07 17:06:42', '2022-05-07 17:06:42');
+(0, 0, 'Datah telah Di hapus', 0, 0, '2022-05-07 17:06:42', '2022-05-07 17:06:42');
 
 -- --------------------------------------------------------
 
@@ -96,7 +96,8 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id`, `nama`, `created_at`, `updated_at`) VALUES
-(0, 'Data was deleted', '2022-05-07 17:05:33', '2022-05-07 17:05:33');
+(0, 'Datah telah Di hapus', '2022-05-07 17:05:33', '2022-05-07 17:05:33'),
+(2, 'bakus', '2022-05-20 10:51:52', '2022-05-20 10:51:59');
 
 -- --------------------------------------------------------
 
@@ -152,7 +153,7 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`id`, `nama`, `alamat`, `no_tlp`, `created_at`, `updated_at`) VALUES
-(0, 'Data was deleted!', 'Data was deleted!', 'Data was deleted!', '2022-05-07 17:07:21', '2022-05-07 17:07:21');
+(0, 'Datah telah Di hapus', 'Datah telah Di hapus', 'Datah telah Di hapus', '2022-05-07 17:07:21', '2022-05-07 17:07:21');
 
 -- --------------------------------------------------------
 
@@ -174,7 +175,7 @@ CREATE TABLE `pemasok` (
 --
 
 INSERT INTO `pemasok` (`id`, `nama`, `alamat`, `no_tlp`, `created_at`, `updated_at`) VALUES
-(0, 'Data was deleted!', 'Data was deleted!', 'Data was deleted!', '2022-05-07 17:07:43', '2022-05-07 17:07:43');
+(0, 'Datah telah Di hapus', 'Datah telah Di hapus', 'Datah telah Di hapus', '2022-05-07 17:07:43', '2022-05-07 17:07:43');
 
 -- --------------------------------------------------------
 
@@ -203,10 +204,9 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `transaksi` (
   `id` bigint(20) NOT NULL,
   `no_transaksi` varchar(255) NOT NULL,
-  `id_pelanggan` bigint(20) DEFAULT NULL,
+  `keterangan` varchar(255) NOT NULL,
   `id_pemasok` bigint(20) DEFAULT NULL,
   `id_user` bigint(20) NOT NULL,
-  `status` tinyint(1) NOT NULL COMMENT '1 = lunas , 0 = belum',
   `tanggal` date NOT NULL,
   `grandtotal` float NOT NULL,
   `created_at` datetime DEFAULT NULL,
@@ -363,7 +363,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`

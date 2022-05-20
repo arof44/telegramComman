@@ -10,6 +10,7 @@ class Barang
         $data = DB::table('barang as br')
         ->join('kategori as kr','kr.id','=','br.id_kategori')
         ->where('br.id','!=',0)
+        ->select('kr.nama as nama_kategori','br.*')
         ->get();
         return $data;
     }

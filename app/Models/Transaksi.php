@@ -9,19 +9,25 @@ class Transaksi
 	public function get()
     {
         
-        $arr = DB::table('transaksi')->get();
+        $arr = DB::table('transaksi as trs')
+        ->join('transaksi_item as trsi','trsi.id_transaksi','=','trs.id')
+        ->join('barang as br','br.id','=','trsi.id_barang')
+        ->join('users as us','us.id','=','trs.id_user')
+        ->leftjoin('pemasok as pms','trs.id_pemasok','=','pms.id')
+        ->select('br.nama as nama_barang','br.stock as stock_transaksi','trs.*')
+        ->groupBy('trs.id')
+        ->get();
         return $arr;
     }
 
-    public function createTranskasiPelanggan($request)
+    public function createTranskasiKeluar($request)
     {
         $no =strtotime(date('Y-m-d H:i:s'));
         $data = DB::table('transaksi')->insertGetId([
             'no_transaksi'=>$no,
             'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
             'id_user'=>Auth::user()->id,
-            //'id_pelanggan'=>$request->id_pelanggan,
-            'status'=>$request->status,
+            'keterangan'=>$request->keterangan,
             'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString()
         ]);
         $grandtotal = 0;
@@ -38,7 +44,7 @@ class Transaksi
                 'id_barang'=>$value,
                 'id_transaksi'=>$data,
                 'qty'=>$request->qty[$key],
-                'type'=>$request->type,
+                'type'=>'k',
                 'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
                 'id_user'=>Auth::user()->id,
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
@@ -54,14 +60,13 @@ class Transaksi
         DB::table('transaksi')->where('id',$id)->update(['grandtotal'=>$grandtotal]);
     }
 
-    public function updateTranskasiPelanggan($request,$id)
+    public function updateTranskasiKeluar($request,$id)
     {
         DB::table('transaksi')->where('id',$id)->update([
             'no_transaksi'=>$no,
             'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
             'id_user'=>Auth::user()->id,
-            //'id_pelanggan'=>$request->id_pelanggan,
-            'status'=>$request->status,
+            'keterangan'=>$request->keterangan,
             'updated_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString()
         ]);
         DB::table('transaksi_item')->where('id_transaksi',$id)->delete();
@@ -80,7 +85,7 @@ class Transaksi
                 'id_barang'=>$value,
                 'id_transaksi'=>$data,
                 'qty'=>$request->qty[$key],
-                'type'=>$request->type,
+                'type'=>'k',
                 'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
                 'id_user'=>Auth::user()->id,
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
@@ -96,7 +101,7 @@ class Transaksi
         DB::table('transaksi')->where('id',$id)->update(['grandtotal'=>$grandtotal]);
     }
 
-    public function createTranskasiPemasok($request)
+    public function createTranskasiMasuk($request)
     {
         $no =strtotime(date('Y-m-d H:i:s'));
         $data = DB::table('transaksi')->insertGetId([
@@ -104,7 +109,7 @@ class Transaksi
             'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
             'id_user'=>Auth::user()->id,
             'id_pemasok'=>$request->id_pemasok,
-            'status'=>$request->status,
+            'keterangan'=>$request->keterangan,
             'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString()
         ]);
         $grandtotal = 0;
@@ -121,7 +126,7 @@ class Transaksi
                 'id_barang'=>$value,
                 'id_transaksi'=>$data,
                 'qty'=>$request->qty[$key],
-                'type'=>$request->type,
+                'type'=>'m',
                 'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
                 'id_user'=>Auth::user()->id,
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
@@ -137,14 +142,14 @@ class Transaksi
         DB::table('transaksi')->where('id',$id)->update(['grandtotal'=>$grandtotal]);
     }
 
-    public function updateTranskasiPemasok($request,$id)
+    public function updateTranskasiMasuk($request,$id)
     {
         DB::table('transaksi')->where('id',$id)->update([
             'no_transaksi'=>$no,
             'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
             'id_user'=>Auth::user()->id,
             'id_pemasok'=>$request->id_pemasok,
-            'status'=>$request->status,
+            'keterangan'=>$request->keterangan,
             'updated_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString()
         ]);
         DB::table('transaksi_item')->where('id_transaksi',$id)->delete();
@@ -163,7 +168,7 @@ class Transaksi
                 'id_barang'=>$value,
                 'id_transaksi'=>$data,
                 'qty'=>$request->qty[$key],
-                'type'=>$request->type,
+                'type'=>'m',
                 'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
                 'id_user'=>Auth::user()->id,
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
