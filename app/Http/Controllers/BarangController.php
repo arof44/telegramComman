@@ -46,9 +46,9 @@ class BarangController extends Controller
         $barang = new Barang();
         $input = $barang->update($request,$id);
         if(!$input){
-            return redirect()->back()->with('error','Gagal add barang');
+            return redirect()->back()->with('error','Gagal update barang');
         }
-        return redirect()->back()->with('success','Success add barang');
+        return redirect()->back()->with('success','Success update barang');
     }
 
     public function delete($id)
@@ -56,8 +56,8 @@ class BarangController extends Controller
         $barang = new Barang();
         $input = $barang->delete($id);
         if(!$input){
-            return redirect()->back()->with('error','Gagal add barang');
+            return redirect()->back()->with('error','Gagal delete barang');
         }
-        return redirect()->back()->with('success','Success add barang');
+        return redirect()->back()->with('success','Success delete barang');
     }
 }

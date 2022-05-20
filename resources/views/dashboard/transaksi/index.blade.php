@@ -11,33 +11,25 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 d-flex align-items-center">
                               <li class="breadcrumb-item"><a href="index.html" class="link"><i class="mdi mdi-home-outline fs-4"></i></a></li>
-                              <li class="breadcrumb-item active" aria-current="page">Barang</li>
+                              <li class="breadcrumb-item active" aria-current="page">Transaksi</li>
                             </ol>
                           </nav>
-                        <h1 class="mb-0 fw-bold">Barang</h1> 
+                        <h1 class="mb-0 fw-bold">Transaksi</h1> 
                     </div>
-<!--                      <div class="col-2">
+                     <div class="col-3">
                         <div class="text-end upgrade-btn">
                             <a href="#" class="btn btn-danger btn-sm  text-white" 
                             data-bs-toggle="modal" data-bs-target="#">
-                                - Barang Keluar
+                                Tambah Transaksi Masuk
                             </a>
                         </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-3">
                         <div class="text-end upgrade-btn">
 
                             <a href="#" class="btn btn-success btn-sm  text-white" 
                             data-bs-toggle="modal" data-bs-target="#">
-                                + Barang Masuk
-                            </a>
-                        </div>
-                    </div> -->
-                    <div class="col-2">
-                        <div class="text-end upgrade-btn">
-                            <a href="#" class="btn btn-primary btn-sm text-white" 
-                            data-bs-toggle="modal" data-bs-target="#tambahBarang">
-                                Tambah Data Barang
+                                Tambah Transaksi Masuk
                             </a>
                         </div>
                     </div>
@@ -84,20 +76,20 @@
                                                 <td>
                                                     <a href="#" class="btn-info btn-sm"
                                                     data-bs-toggle="modal" 
-                                                    data-bs-target="#editBarang{{$item->id}}">
+                                                    data-bs-target="#editTransaksi{{$item->id}}">
                                                         <i class="fa fa-edit" style="color: white;"></i>
                                                     </a>
                                                     &nbsp;
                                                     <a href="#" class="btn-danger btn-sm"
                                                     data-bs-toggle="modal" 
-                                                    data-bs-target="#deleteBarang{{$item->id}}">
+                                                    data-bs-target="#deleteTransaksi{{$item->id}}">
                                                         <i class="fa fa-trash" style="color: white;"></i>
                                                     </a>
                                                 </td>
                                             </tr>
-                                            <!-- modal editBarang-->
+                                            <!-- modal editTransaksi-->
                                             @include('dashboard.barang.modal')
-                                            <!-- end modal tambahBarang -->
+                                            <!-- end modal tambahTransaksi -->
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -108,15 +100,15 @@
                 </div>
             </div>
 
-            <!-- modal tambahBarang-->
-            <div class="modal" id="tambahBarang">
+            <!-- modal tambahTransaksi-->
+            <div class="modal" id="tambahTransaksi">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                 <form action="{{url('barang_insert')}}" method="post">
                 @csrf
                   <!-- Modal Header -->
                   <div class="modal-header">
-                    <h4 class="modal-title">Tambah Barang</h4>
+                    <h4 class="modal-title">Tambah Transaksi</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                   </div>
                   <!-- Modal body -->
@@ -147,7 +139,7 @@
                 </div>
               </div>
             </div>
-            <!-- end modal tambahBarang -->
+            <!-- end modal tambahTransaksi -->
            @include('layouts.footer')
         </div>
 @endsection

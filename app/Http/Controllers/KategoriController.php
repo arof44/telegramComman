@@ -43,9 +43,9 @@ class KategoriController extends Controller
         $kategori = new Kategori();
         $input = $kategori->update($request,$id);
         if(!$input){
-            return redirect()->back()->with('error','Gagal add kategori');
+            return redirect()->back()->with('error','Gagal update kategori');
         }
-        return redirect()->back()->with('success','Success add kategori');
+        return redirect()->back()->with('success','Success update kategori');
     }
 
     public function delete($id)
@@ -53,8 +53,8 @@ class KategoriController extends Controller
         $kategori = new Kategori();
         $input = $kategori->delete($id);
         if(!$input){
-            return redirect()->back()->with('error','Gagal add kategori');
+            return redirect()->back()->with('error','Gagal delete kategori');
         }
-        return redirect()->back()->with('success','Success add kategori');
+        return redirect()->back()->with('success','Success delete kategori');
     }
 }

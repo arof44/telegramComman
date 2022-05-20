@@ -43,9 +43,9 @@ class PemasokController extends Controller
         $pemasok = new Pemasok();
         $input = $pemasok->update($request,$id);
         if(!$input){
-            return redirect()->back()->with('error','Gagal add pemasok');
+            return redirect()->back()->with('error','Gagal update pemasok');
         }
-        return redirect()->back()->with('success','Success add pemasok');
+        return redirect()->back()->with('success','Success update pemasok');
     }
 
     public function delete($id)
@@ -53,8 +53,8 @@ class PemasokController extends Controller
         $pemasok = new Pemasok();
         $input = $pemasok->delete($id);
         if(!$input){
-            return redirect()->back()->with('error','Gagal add pemasok');
+            return redirect()->back()->with('error','Gagal delete pemasok');
         }
-        return redirect()->back()->with('success','Success add pemasok');
+        return redirect()->back()->with('success','Success delete pemasok');
     }
 }
