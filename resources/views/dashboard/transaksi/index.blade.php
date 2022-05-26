@@ -16,20 +16,11 @@
                           </nav>
                         <h1 class="mb-0 fw-bold">Transaksi</h1> 
                     </div>
-                     <div class="col-3">
+                     <div class="col-6">
                         <div class="text-end upgrade-btn">
-                            <a href="#" class="btn btn-danger btn-sm  text-white" 
-                            data-bs-toggle="modal" data-bs-target="#">
-                                Tambah Transaksi Masuk
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="text-end upgrade-btn">
-
-                            <a href="#" class="btn btn-success btn-sm  text-white" 
-                            data-bs-toggle="modal" data-bs-target="#">
-                                Tambah Transaksi Masuk
+                            <a href="#" class="btn btn-primary text-white" 
+                            data-bs-toggle="modal" data-bs-target="#tambahTransaksi">
+                                Tambah Data Transaksi
                             </a>
                         </div>
                     </div>
@@ -51,49 +42,66 @@
                 <div class="row">
                      <div class="col-12">
                         <div class="card">
+                            <div class="card-header">
+                                 <nav>
+                                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                                        Masuk
+                                    </button>
+                                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+                                        Keluar
+                                    </button>
+                                  </div>
+                                </nav>
+                            </div>
                             <div class="card-body">
-                                <h6 class="card-subtitle">Daftar barang yang terdaftar di sistem</h6>
-                                <div class="table-responsive">
-                                    <table class="table" id="example" class="display" style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Nama</th>
-                                                <th scope="col">Harga</th>
-                                                <th scope="col">Kategori</th>
-                                                <th scope="col">Stock</th>
-                                                <th scope="col">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($data as $key => $item)
-                                            <tr>
-                                                <th scope="row">{{$key+1}}</th>
-                                                <td>{{$item->nama}}</td>
-                                                <td>Rp.{{number_format($item->harga)}}</td>
-                                                <td>{{$item->nama_kategori}}</td>
-                                                <td>{{$item->stock}}</td>
-                                                <td>
-                                                    <a href="#" class="btn-info btn-sm"
-                                                    data-bs-toggle="modal" 
-                                                    data-bs-target="#editTransaksi{{$item->id}}">
-                                                        <i class="fa fa-edit" style="color: white;"></i>
-                                                    </a>
-                                                    &nbsp;
-                                                    <a href="#" class="btn-danger btn-sm"
-                                                    data-bs-toggle="modal" 
-                                                    data-bs-target="#deleteTransaksi{{$item->id}}">
-                                                        <i class="fa fa-trash" style="color: white;"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <!-- modal editTransaksi-->
-                                            @include('dashboard.barang.modal')
-                                            <!-- end modal tambahTransaksi -->
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <h6 class="card-subtitle">Daftar transaksi yang terdaftar di sistem</h6>
+                               
+
+                                <div class="tab-content" id="nav-tabContent">
+                                  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                                       <div class="table-responsive">
+                                        <table class="table example" id="" class="display" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Barang</th>
+                                                    <th scope="col">Tanggal</th>
+                                                    <th scope="col">Jumlah</th>
+                                                    <th scope="col">Pemasok</th>
+                                                    <th scope="col">Grand Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                  </div>
+                                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+                                    <div class="table-responsive">
+                                        <table class="table example" id="" class="display" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Barang</th>
+                                                    <th scope="col">Tanggal</th>
+                                                    <th scope="col">Jumlah</th>
+                                                    <th scope="col">Penanggung Jawab</th>
+                                                    <th scope="col">Grand Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                  </div>
+                                </div>  
                             </div>
                         </div>
                     </div>
@@ -101,10 +109,10 @@
             </div>
 
             <!-- modal tambahTransaksi-->
-            <div class="modal" id="tambahTransaksi">
+                        <div class="modal" id="tambahTransaksi">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                <form action="{{url('barang_insert')}}" method="post">
+                <form action="{{url('add_trs_by_type')}}" method="post">
                 @csrf
                   <!-- Modal Header -->
                   <div class="modal-header">
@@ -114,25 +122,20 @@
                   <!-- Modal body -->
                 <div class="modal-body">
                      <div class="form-group first">
-                        <label for="username">Nama</label>
-                        <input type="text" class="form-control" placeholder="Triplek baru" id="username" name="nama" required>
+                        <label for="username">Banyak barang yg di inginkan</label>
+                        <input type="number" class="form-control" placeholder="ex : 10" id="username" name="banyak" required>
                       </div>
                       <div class="form-group first">
-                        <label for="username">Harga</label>
-                        <input type="text" class="form-control" placeholder="20000" id="username" name="harga" required>
-                      </div>
-                     <div class="form-group first">
-                        <label for="username">Kategori</label>
-                        <select class="form-control" name="id_kategori" required>
-                            @foreach($dataKategori as $kr)
-                                <option value="{{$kr->id}}">{{$kr->nama}}</option>
-                            @endforeach
+                        <label for="username">Type</label>
+                        <select class="form-control" name="type" required>
+                            <option value="masuk">Transaksi Masuk</option>
+                            <option value="keluar">Transaksi Keluar</option>
                         </select>
                       </div>
                  </div>
                   <!-- Modal footer -->
                   <div class="modal-footer">
-                     <input type="submit" value="Tambah" class="btn btn-block btn-primary">
+                     <input type="submit" value="Submit" class="btn btn-block btn-primary">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
                   </div>
                 </form>
@@ -147,7 +150,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-    $('#example').DataTable();
+    $('.example').DataTable();
 } );
 </script>
 @endsection

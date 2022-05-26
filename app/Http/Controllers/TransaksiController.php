@@ -24,6 +24,29 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        return view('dashboard.home');
+        return view('dashboard.transaksi.index');
+    }
+
+    public function tangkapType(Request $request){
+        if($request->type == 'masuk'){
+            return redirect('add_transaksi_masuk/'.$request->banyak);
+        }else{
+            return redirect('add_transaksi_keluar/'.$request->banyak);
+        }
+    }
+
+    public function createMasuk($banyak)
+    {
+        return view('dashboard.transaksi.create_masuk',compact('banyak'));
+    }
+
+    public function createKeluar($banyak)
+    {
+        return view('dashboard.transaksi.create_keluar',compact('banyak'));
+    }
+
+    public function report()
+    {
+        return view('dashboard.transaksi.report');
     }
 }

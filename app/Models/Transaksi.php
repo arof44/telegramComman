@@ -9,14 +9,24 @@ class Transaksi
 	public function get()
     {
         
-        $arr = DB::table('transaksi as trs')
+        $masuk = DB::table('transaksi as trs')
         ->join('transaksi_item as trsi','trsi.id_transaksi','=','trs.id')
         ->join('barang as br','br.id','=','trsi.id_barang')
         ->join('users as us','us.id','=','trs.id_user')
-        ->leftjoin('pemasok as pms','trs.id_pemasok','=','pms.id')
         ->select('br.nama as nama_barang','br.stock as stock_transaksi','trs.*')
         ->groupBy('trs.id')
         ->get();
+        $masukArr =  json_decode(json_encode($masuk),true);
+        $keluar = DB::table('transaksi as trs')
+        ->join('transaksi_item as trsi','trsi.id_transaksi','=','trs.id')
+        ->join('barang as br','br.id','=','trsi.id_barang')
+        ->join('users as us','us.id','=','trs.id_user')
+        ->join('pemasok as pms','trs.id_pemasok','=','pms.id')
+        ->select('br.nama as nama_barang','br.stock as stock_transaksi','trs.*')
+        ->groupBy('trs.id')
+        ->get();
+        $keluarArr =  json_decode(json_encode($keluar),true);
+        $arr ['masuk'=>$masukArr,'keluar'=>$keluarArr];
         return $arr;
     }
 
@@ -25,8 +35,8 @@ class Transaksi
         $no =strtotime(date('Y-m-d H:i:s'));
         $data = DB::table('transaksi')->insertGetId([
             'no_transaksi'=>$no,
-            'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
-            'id_user'=>Auth::user()->id,
+            'tanggal'=>$request->date_trs,
+            'id_user'=>$request->id_user,
             'keterangan'=>$request->keterangan,
             'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString()
         ]);
@@ -45,7 +55,7 @@ class Transaksi
                 'id_transaksi'=>$data,
                 'qty'=>$request->qty[$key],
                 'type'=>'k',
-                'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
+                'tanggal'=>$request->date_trs,
                 'id_user'=>Auth::user()->id,
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
             ]);
@@ -64,8 +74,8 @@ class Transaksi
     {
         DB::table('transaksi')->where('id',$id)->update([
             'no_transaksi'=>$no,
-            'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
-            'id_user'=>Auth::user()->id,
+            'tanggal'=>$request->date_trs,
+            'id_user'=>$request->id_user,
             'keterangan'=>$request->keterangan,
             'updated_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString()
         ]);
@@ -86,7 +96,7 @@ class Transaksi
                 'id_transaksi'=>$data,
                 'qty'=>$request->qty[$key],
                 'type'=>'k',
-                'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
+                'tanggal'=>$request->date_trs,
                 'id_user'=>Auth::user()->id,
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
             ]);
@@ -106,7 +116,7 @@ class Transaksi
         $no =strtotime(date('Y-m-d H:i:s'));
         $data = DB::table('transaksi')->insertGetId([
             'no_transaksi'=>$no,
-            'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
+            'tanggal'=>$request->date_trs,
             'id_user'=>Auth::user()->id,
             'id_pemasok'=>$request->id_pemasok,
             'keterangan'=>$request->keterangan,
@@ -127,7 +137,7 @@ class Transaksi
                 'id_transaksi'=>$data,
                 'qty'=>$request->qty[$key],
                 'type'=>'m',
-                'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
+                'tanggal'=>$request->date_trs,
                 'id_user'=>Auth::user()->id,
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
             ]);
@@ -146,7 +156,7 @@ class Transaksi
     {
         DB::table('transaksi')->where('id',$id)->update([
             'no_transaksi'=>$no,
-            'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
+            'tanggal'=>$request->date_trs,
             'id_user'=>Auth::user()->id,
             'id_pemasok'=>$request->id_pemasok,
             'keterangan'=>$request->keterangan,
@@ -169,7 +179,7 @@ class Transaksi
                 'id_transaksi'=>$data,
                 'qty'=>$request->qty[$key],
                 'type'=>'m',
-                'tanggal'=>Carbon::now('Asia/Jakarta')->format('Y-m-d'),
+                'tanggal'=>$request->date_trs,
                 'id_user'=>Auth::user()->id,
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
             ]);

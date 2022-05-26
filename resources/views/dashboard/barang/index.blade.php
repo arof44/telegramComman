@@ -16,24 +16,7 @@
                           </nav>
                         <h1 class="mb-0 fw-bold">Barang</h1> 
                     </div>
-<!--                      <div class="col-2">
-                        <div class="text-end upgrade-btn">
-                            <a href="#" class="btn btn-danger btn-sm  text-white" 
-                            data-bs-toggle="modal" data-bs-target="#">
-                                - Barang Keluar
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <div class="text-end upgrade-btn">
-
-                            <a href="#" class="btn btn-success btn-sm  text-white" 
-                            data-bs-toggle="modal" data-bs-target="#">
-                                + Barang Masuk
-                            </a>
-                        </div>
-                    </div> -->
-                    <div class="col-2">
+                    <div class="col-6">
                         <div class="text-end upgrade-btn">
                             <a href="#" class="btn btn-primary btn-sm text-white" 
                             data-bs-toggle="modal" data-bs-target="#tambahBarang">
