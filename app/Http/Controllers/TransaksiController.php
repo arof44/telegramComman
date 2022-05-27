@@ -58,15 +58,19 @@ class TransaksiController extends Controller
         $pemasok = DB::table('pemasok')->where('id','!=',0)->get();
         $barang = DB::table('barang')->where('id','!=',0)->get();
         $data = DB::table('transaksi')->where('id',$id)->first();
-        $item = DB::table('transaksi_item')->where('id_transaksi')
-        return view('dashboard.transaksi.update_masuk',compact('banyak','pemasok','barang'));
+        $item = DB::table('transaksi_item')->where('id_transaksi',$id)->get();
+        //$banyak = count($item);
+        return view('dashboard.transaksi.update_masuk',compact('pemasok','barang','item','data'));
     }
 
     public function updateKeluar($id)
     {
         $barang = DB::table('barang')->where('id','!=',0)->get();
         $pengguna = DB::table('users')->where('id','!=',0)->get();
-        return view('dashboard.transaksi.update_keluar',compact('banyak','pengguna','barang'));
+        $data = DB::table('transaksi')->where('id',$id)->first();
+        $item = DB::table('transaksi_item')->where('id_transaksi',$id)->get();
+       // $banyak = count($item);
+        return view('dashboard.transaksi.update_keluar',compact('pengguna','barang','item','data'));
     }
 
     public function report()

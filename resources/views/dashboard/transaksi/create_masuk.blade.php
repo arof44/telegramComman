@@ -87,9 +87,7 @@
                                                           @endforeach
                                                         </select>
                                                         <br>
-                                                        @foreach($barang as $as => $pItem)
-                                                            <input type="hidden" value="{{$pItem->harga}}" name="harga[]" required>
-                                                        @endforeach
+                                                      
                                                      </div>
                                                      <div class="col-md-6">
                                                         <label for="username">Qty</label>

@@ -52,12 +52,13 @@ class Transaksi
         ]);
         $grandtotal = 0;
         foreach ($request->id_barang as $key => $value) {
-            $grandtotalSub = $request->qty[$key] * $request->harga[$key];
+            $barang = DB::table('barang')->where('id',$value)->select('harga')->first();
+            $grandtotalSub = $request->qty[$key] * $barang->harga;
             $item = DB::table('transaksi_item')->insert([
                 'id_transaksi'=>$data,
                 'id_barang'=>$value,
                 'qty'=>$request->qty[$key],
-                'harga'=>$request->harga[$key],
+                'harga'=>$barang->harga,
                 'grandtotal'=>$grandtotalSub,
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
             ]);
@@ -84,7 +85,7 @@ class Transaksi
     public function updateTranskasiKeluar($request,$id)
     {
         DB::table('transaksi')->where('id',$id)->update([
-            'no_transaksi'=>$no,
+            //'no_transaksi'=>$no,
             'tanggal'=>$request->date_trs,
             'id_user'=>$request->id_user,
             'keterangan'=>$request->keterangan,
@@ -94,18 +95,19 @@ class Transaksi
         DB::table('barang_stock')->where('id_transaksi',$id)->delete();
         $grandtotal = 0;
         foreach ($request->id_barang as $key => $value) {
-            $grandtotalSub = $request->qty[$key] * $request->harga[$key];
+            $barang = DB::table('barang')->where('id',$value)->select('harga')->first();
+            $grandtotalSub = $request->qty[$key] * $barang->harga;
             $item = DB::table('transaksi_item')->insert([
-                'id_transaksi'=>$data,
+                'id_transaksi'=>$id,
                 'id_barang'=>$value,
                 'qty'=>$request->qty[$key],
-                'harga'=>$request->harga[$key],
+                'harga'=>$barang->harga,
                 'grandtotal'=>$grandtotalSub,
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
             ]);
             DB::table('barang_stock')->insert([
                 'id_barang'=>$value,
-                'id_transaksi'=>$data,
+                'id_transaksi'=>$id,
                 'qty'=>$request->qty[$key],
                 'type'=>'k',
                 'tanggal'=>$request->date_trs,
@@ -136,12 +138,13 @@ class Transaksi
         ]);
         $grandtotal = 0;
         foreach ($request->id_barang as $key => $value) {
-            $grandtotalSub = $request->qty[$key] * $request->harga[$key];
+            $barang = DB::table('barang')->where('id',$value)->select('harga')->first();
+            $grandtotalSub = $request->qty[$key] * $barang->harga;
             $item = DB::table('transaksi_item')->insert([
                 'id_transaksi'=>$data,
                 'id_barang'=>$value,
                 'qty'=>$request->qty[$key],
-                'harga'=>$request->harga[$key],
+                'harga'=>$barang->harga,
                 'grandtotal'=>$grandtotalSub,
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
             ]);
@@ -168,7 +171,7 @@ class Transaksi
     public function updateTranskasiMasuk($request,$id)
     {
         DB::table('transaksi')->where('id',$id)->update([
-            'no_transaksi'=>$no,
+           // 'no_transaksi'=>$no,
             'tanggal'=>$request->date_trs,
             'id_user'=>Auth::user()->id,
             'id_pemasok'=>$request->id_pemasok,
@@ -179,18 +182,19 @@ class Transaksi
         DB::table('barang_stock')->where('id_transaksi',$id)->delete();
         $grandtotal = 0;
         foreach ($request->id_barang as $key => $value) {
-            $grandtotalSub = $request->qty[$key] * $request->harga[$key];
+            $barang = DB::table('barang')->where('id',$value)->select('harga')->first();
+            $grandtotalSub = $request->qty[$key] * $barang->harga;
             $item = DB::table('transaksi_item')->insert([
-                'id_transaksi'=>$data,
+                'id_transaksi'=>$id,
                 'id_barang'=>$value,
                 'qty'=>$request->qty[$key],
-                'harga'=>$request->harga[$key],
+                'harga'=>$barang->harga,
                 'grandtotal'=>$grandtotalSub,
                 'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString(),
             ]);
             DB::table('barang_stock')->insert([
                 'id_barang'=>$value,
-                'id_transaksi'=>$data,
+                'id_transaksi'=>$id,
                 'qty'=>$request->qty[$key],
                 'type'=>'m',
                 'tanggal'=>$request->date_trs,

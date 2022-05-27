@@ -71,6 +71,7 @@
                                                     <th scope="col">Jumlah</th>
                                                     <th scope="col">Pemasok</th>
                                                     <th scope="col">Grand Total</th>
+                                                    <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -82,6 +83,11 @@
                                                     <td>{{$item['qty']}}</td>
                                                     <td>{{$item['nama_pemasok']}}</td>
                                                     <td>{{$item['grandtotal']}}</td>
+                                                    <td>
+                                                        <a href="{{url('update_transaksi_masuk')}}/{{$item['id']}}" >
+                                                            <i class="fa fa-edit" style="color: black;"></i>
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -101,6 +107,7 @@
                                                     <th scope="col">Jumlah</th>
                                                     <th scope="col">Penanggung Jawab</th>
                                                     <th scope="col">Grand Total</th>
+                                                    <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -112,6 +119,11 @@
                                                     <td>{{$item['qty']}}</td>
                                                     <td>{{$item['nama_pengguna']}}</td>
                                                     <td>{{$item['grandtotal']}}</td>
+                                                    <td>
+                                                        <a href="{{url('update_transaksi_keluar')}}/{{$item['id']}}" >
+                                                            <i class="fa fa-edit" style="color: black;"></i>
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
