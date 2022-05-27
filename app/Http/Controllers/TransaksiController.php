@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use PDF;
-use App\Models\Trnsaksi;
+use App\Models\Transaksi;
+use DB;
 class TransaksiController extends Controller
 {
     /**
@@ -24,7 +25,10 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        return view('dashboard.transaksi.index');
+        $trs = new Transaksi();
+        $data = $trs->get();
+        //return $data['masuk'];
+        return view('dashboard.transaksi.index',compact('data'));
     }
 
     public function tangkapType(Request $request){
@@ -37,16 +41,67 @@ class TransaksiController extends Controller
 
     public function createMasuk($banyak)
     {
-        return view('dashboard.transaksi.create_masuk',compact('banyak'));
+        $pemasok = DB::table('pemasok')->where('id','!=',0)->get();
+        $barang = DB::table('barang')->where('id','!=',0)->get();
+        return view('dashboard.transaksi.create_masuk',compact('banyak','pemasok','barang'));
     }
 
     public function createKeluar($banyak)
     {
-        return view('dashboard.transaksi.create_keluar',compact('banyak'));
+        $barang = DB::table('barang')->where('id','!=',0)->get();
+        $pengguna = DB::table('users')->where('id','!=',0)->get();
+        return view('dashboard.transaksi.create_keluar',compact('banyak','pengguna','barang'));
+    }
+
+    public function updateMasuk($id)
+    {
+        $pemasok = DB::table('pemasok')->where('id','!=',0)->get();
+        $barang = DB::table('barang')->where('id','!=',0)->get();
+        $data = DB::table('transaksi')->where('id',$id)->first();
+        $item = DB::table('transaksi_item')->where('id_transaksi')
+        return view('dashboard.transaksi.update_masuk',compact('banyak','pemasok','barang'));
+    }
+
+    public function updateKeluar($id)
+    {
+        $barang = DB::table('barang')->where('id','!=',0)->get();
+        $pengguna = DB::table('users')->where('id','!=',0)->get();
+        return view('dashboard.transaksi.update_keluar',compact('banyak','pengguna','barang'));
     }
 
     public function report()
     {
-        return view('dashboard.transaksi.report');
+        $pemasok = DB::table('pemasok')->get();
+        $barang = DB::table('barang')->get();
+        return view('dashboard.transaksi.report',compact('pemasok','barang'));
+    }
+
+    public function createTranskasiMasuk(Request $request)
+    {
+        //return $request->all();
+        $trs = new Transaksi();
+        $data = $trs->createTranskasiMasuk($request);
+        return redirect('transaksi')->with('success','Success add transakasi');
+    }
+
+    public function updateTranskasiMasuk(Request $request,$id)
+    {
+        $trs = new Transaksi();
+        $data = $trs->updateTranskasiMasuk($request,$id);
+        return redirect('transaksi')->with('success','Update add transakasi');
+    }
+
+    public function createBarangKeluar(Request $request)
+    {
+        $trs = new Transaksi();
+        $data = $trs->createTranskasiKeluar($request);
+        return redirect('transaksi')->with('success','Success add transakasi');
+    }
+
+    public function updateTranskasiKeluar(Request $request,$id)
+    {
+        $trs = new Transaksi();
+        $data = $trs->updateTranskasiKeluar($request,$id);
+        return redirect('transaksi')->with('success','Update add transakasi');
     }
 }

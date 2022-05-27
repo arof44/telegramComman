@@ -63,7 +63,17 @@ Route::post('/barang_update/{id}', [BarangController::class, 'update']);
 //transaksi
 Route::get('/transaksi', [TransaksiController::class, 'index']);
 Route::post('/add_trs_by_type', [TransaksiController::class, 'tangkapType']);
+
 Route::get('/add_transaksi_masuk/{banyak}', [TransaksiController::class, 'createMasuk']);
 Route::get('/add_transaksi_keluar/{banyak}', [TransaksiController::class, 'createKeluar']);
+
+Route::get('/update_transaksi_masuk/{id}', [TransaksiController::class, 'updateMasuk']);
+Route::get('/update_transaksi_keluar/{id}', [TransaksiController::class, 'updateKeluar']);
+
+Route::post('/post_create_masuk', [TransaksiController::class, 'createTranskasiMasuk']);
+Route::post('/update_create_masuk/{id}', [TransaksiController::class, 'updateTranskasiMasuk']);
+
+Route::post('/post_create_keluar', [TransaksiController::class, 'createBarangKeluar']);
+Route::post('/update_create_keluar/{id}', [TransaksiController::class, 'updateTranskasiKeluar']);
 //laporan
 Route::get('/laporan', [TransaksiController::class, 'report']);

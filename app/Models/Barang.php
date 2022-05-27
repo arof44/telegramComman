@@ -23,6 +23,7 @@ class Barang
             'harga'=>$request->harga,
             'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString()
         ]);
+        return $data;
     }
 
     public function update($request,$id)
@@ -33,6 +34,7 @@ class Barang
             'harga'=>$request->harga,
             'updated_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString()
         ]);
+        return $data;
     }
 
     public function delete($id)
@@ -40,5 +42,6 @@ class Barang
         $data = DB::table('barang')->where('id_barang')->where('id',$id)->delete();
         $barang = DB::table('barang_stock')->where('id_barang',$id)->update(['id_barang'=>0]);
         $transaksi = DB::table('transaksi_item')->where('id_barang',$id)->update(['id_barang'=>0]);
+        return $data;
     }
 }

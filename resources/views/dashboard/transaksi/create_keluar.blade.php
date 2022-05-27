@@ -36,7 +36,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-subtitle" style="font-weight: bold;">Tambah data transaksi</h3>
-                            <form action="{{url('laporan_transaksi_generate')}}" method="post">
+                            <form action="{{url('post_create_keluar')}}" method="post">
                                 @csrf
                                   <!-- Modal body -->
                                 <div class="modal-body">
@@ -57,29 +57,49 @@
 
                                        <div class="form-group first">
                                          <label for="username">Type</label>
-                                        <input type="text" value="Barang keluar" class="form-control" id="username" name="keterangan" required readonly>
+                                        <input type="text" value="Barang keluar" class="form-control" id="username" name="keterangan_1" required readonly>
                                       </div>
 
 
                                       <div class="form-group first">
                                         <div class="row">
+                                            
                                             <div class="col-md-6">
                                                <label for="username">Penanggung Jawab</label>
                                                 <select class="form-control" name="id_user" required>
-                                                  
-                                                
+                                                    @foreach($pengguna as $as => $pItem)
+                                                        <option value="{{$pItem->id}}">
+                                                            {{$pItem->name}}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
+
                                             <div class="col-md-6">
-                                                
                                                 @for($i=0;$i < $banyak; $i++)
-                                                <label for="username">Barang ke - {{$i+1}}</label>
-                                                <select class="form-control" name="id_barang" required>
-                                                  <option value="1">1</option>
-                                                </select>
-                                                <br>
+                                                <div class="row">
+                                                     <div class="col-md-6">
+                                                        <label for="username">Barang ke - {{$i+1}}</label>
+                                                        <select class="form-control" name="id_barang[]" required>
+                                                          @foreach($barang as $as => $pItem)
+                                                            <option value="{{$pItem->id}}">
+                                                                {{$pItem->nama}}
+                                                            </option>
+                                                          @endforeach
+                                                        </select>
+                                                        @foreach($barang as $as => $pItem)
+                                                            <input type="hidden" value="{{$pItem->harga}}" name="harga[]" required>
+                                                        @endforeach
+                                                        <br>
+                                                     </div>
+                                                     <div class="col-md-6">
+                                                        <label for="username">Qty</label>
+                                                        <input type="number" value="" placeholder="Ex : 10" class="form-control" id="username" name="qty[]" required>
+                                                     </div>
+                                                </div>
                                                 @endfor
                                             </div>
+
                                         </div>
                                         
                                       </div>

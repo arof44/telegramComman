@@ -66,7 +66,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
-                                                    <th scope="col">Barang</th>
+                                                    <th scope="col">Keterangan</th>
                                                     <th scope="col">Tanggal</th>
                                                     <th scope="col">Jumlah</th>
                                                     <th scope="col">Pemasok</th>
@@ -74,7 +74,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
+                                                @foreach($data['masuk'] as $key => $item)
+                                                <tr>
+                                                    <td>{{$key+1}}</td>
+                                                    <td>{{$item['keterangan']}}</td>
+                                                    <td>{{$item['tanggal']}}</td>
+                                                    <td>{{$item['qty']}}</td>
+                                                    <td>{{$item['nama_pemasok']}}</td>
+                                                    <td>{{$item['grandtotal']}}</td>
+                                                </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -87,7 +96,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
-                                                    <th scope="col">Barang</th>
+                                                    <th scope="col">Keterangan</th>
                                                     <th scope="col">Tanggal</th>
                                                     <th scope="col">Jumlah</th>
                                                     <th scope="col">Penanggung Jawab</th>
@@ -95,7 +104,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
+                                                @foreach($data['keluar'] as $key => $item)
+                                                <tr>
+                                                    <td>{{$key+1}}</td>
+                                                    <td>{{$item['keterangan']}}</td>
+                                                    <td>{{$item['tanggal']}}</td>
+                                                    <td>{{$item['qty']}}</td>
+                                                    <td>{{$item['nama_pengguna']}}</td>
+                                                    <td>{{$item['grandtotal']}}</td>
+                                                </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
