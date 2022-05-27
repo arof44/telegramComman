@@ -211,4 +211,55 @@ class Transaksi
         }
         DB::table('transaksi')->where('id',$id)->update(['grandtotal'=>$grandtotal]);
     }
+
+    public function getReport($type,$data)
+    {
+        if($type == 'keluar'){
+            $pekK = DB::table('transaksi as trs');
+            $pekK->join('transaksi_item as trsi','trsi.id_transaksi','=','trs.id');
+            $pekK->join('barang_stock as brst','brst.id_transaksi','=','trs.id');
+            $pekK->join('users as us','us.id','=','trs.id_user');
+            $pekK->where('brst.type','k');
+            $pekK->whereBetween('trs.tanggal',[$data->start_date,$data->end_date]);
+            if($data->id_user != 'all'){
+                $pekK->where('trs.id_user',$data->id_user);
+            }
+            if($data->id_barang != 'all'){
+                $pekK->where('trsi.id_barang',$data->id_user);
+            }
+            $pekK->select('trs.*','us.name as nama_pengguna','brst.type','brst.qty as qty');
+            $pekK->groupBy('trs.id');
+            $keluar = $pekK->get();
+            $keluarArr =  json_decode(json_encode($keluar),true);
+            foreach ($keluarArr as $key => $value) {
+                $qty = DB::table('barang_stock')->where('id_transaksi',$value['id'])->sum('qty');
+                $keluarArr[$key]['qty'] = $qty;
+            }
+            $arr = ['masuk'=>[],'keluar'=>$keluarArr];
+            return $arr;
+        }else{
+            $pekM = DB::table('transaksi as trs');
+            $pekM->join('transaksi_item as trsi','trsi.id_transaksi','=','trs.id');
+            $pekM->join('barang_stock as brst','brst.id_transaksi','=','trs.id');
+            $pekM->join('pemasok as pms','trs.id_pemasok','=','pms.id');
+            $pekM->where('brst.type','m');
+            $pekM->whereBetween('trs.tanggal',[$data->start_date,$data->end_date]);
+            if($data->id_pemasok != 'all'){
+                $pekM->where('trs.id_pemasok',$data->id_pemasok);
+            }
+            if($data->id_barang != 'all'){
+                $pekM->where('trsi.id_barang',$data->id_user);
+            }
+            $pekM->select('trs.*','pms.nama as nama_pemasok','brst.qty as qty');
+            $pekM->groupBy('trs.id');
+            $masuk = $pekM->get();
+            $masukArr =  json_decode(json_encode($masuk),true);
+            foreach ($masukArr as $key => $value) {
+                $qty = DB::table('barang_stock')->where('id_transaksi',$value['id'])->sum('qty');
+                $masukArr[$key]['qty'] = $qty;
+            }
+            $arr = ['keluar'=>[],'masuk'=>$masukArr];
+            return $arr;
+        }
+    }
 }

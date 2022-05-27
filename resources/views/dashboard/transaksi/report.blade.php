@@ -36,7 +36,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-subtitle" style="font-weight: bold;">Import data transaksi masuk</h3>
-                            <form action="{{url('laporan_transaksi_generate')}}" method="post">
+                          <form action="{{url('laporan_report')}}/masuk" method="post">
                                 @csrf
                                   <!-- Modal body -->
                                 <div class="modal-body">
@@ -49,19 +49,29 @@
                                         <input type="date" value="{{date('Y-m-d')}}" class="form-control" id="username" name="end_date" required>
                                       </div>
                                       <div class="form-group first">
-                                        <label for="username">Pemasok</label>
-                                        <select class="form-control" name="warehouse_id" required>
-                                           <option value="all">Semua</option>
-                                        
-                                        </select>
+                                       <label for="username">Pemasok</label>
+                                       
+                                                <select class="form-control" name="id_user" required>
+                                                    <option value="all">Semua</option>
+                                                    @foreach($pemasok as $as => $pItem)
+                                                        <option value="{{$pItem->id}}">
+                                                            {{$pItem->nama}}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                       </div>
 
                                       <div class="form-group first">
                                         <label for="username">Barang</label>
-                                        <select class="form-control" name="material_id" required>
-                                           <option value="all">Semua</option>
-                                           
-                                        </select>
+                                       
+                                                <select class="form-control" name="id_user" required>
+                                                    <option value="all">Semua</option>
+                                                    @foreach($barang as $as => $pItem)
+                                                        <option value="{{$pItem->id}}">
+                                                            {{$pItem->nama}}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                       </div>
 
                                  </div>
@@ -78,7 +88,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-subtitle" style="font-weight: bold;">Import data transaksi keluar</h3>
-                            <form action="{{url('laporan_transaksi_generate')}}" method="post">
+                            <form action="{{url('laporan_report')}}/keluar" method="post">
                                 @csrf
                                   <!-- Modal body -->
                                 <div class="modal-body">
@@ -91,19 +101,29 @@
                                         <input type="date" value="{{date('Y-m-d')}}" class="form-control" id="username" name="end_date" required>
                                       </div>
                                       <div class="form-group first">
-                                        <label for="username">Penanggung jawab</label>
-                                        <select class="form-control" name="warehouse_id" required>
-                                           <option value="all">Semua</option>
-                                        
-                                        </select>
+                                        <label for="username">Penanggung Jawab</label>
+                                       
+                                                <select class="form-control" name="id_user" required>
+                                                     <option value="all">Semua</option>
+                                                    @foreach($pengguna as $as => $pItem)
+                                                        <option value="{{$pItem->id}}">
+                                                            {{$pItem->name}}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                       </div>
 
                                       <div class="form-group first">
                                         <label for="username">Barang</label>
-                                        <select class="form-control" name="material_id" required>
-                                           <option value="all">Semua</option>
-                                           
-                                        </select>
+                                       
+                                                <select class="form-control" name="id_user" required>
+                                                    <option value="all">Semua</option>
+                                                    @foreach($barang as $as => $pItem)
+                                                        <option value="{{$pItem->id}}">
+                                                            {{$pItem->nama}}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                       </div>
 
                                  </div>

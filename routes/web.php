@@ -77,3 +77,4 @@ Route::post('/post_create_keluar', [TransaksiController::class, 'createBarangKel
 Route::post('/update_create_keluar/{id}', [TransaksiController::class, 'updateTranskasiKeluar']);
 //laporan
 Route::get('/laporan', [TransaksiController::class, 'report']);
+Route::post('/laporan_report/{type}', [TransaksiController::class, 'getReport']);

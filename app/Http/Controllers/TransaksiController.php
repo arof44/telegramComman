@@ -75,9 +75,19 @@ class TransaksiController extends Controller
 
     public function report()
     {
-        $pemasok = DB::table('pemasok')->get();
-        $barang = DB::table('barang')->get();
-        return view('dashboard.transaksi.report',compact('pemasok','barang'));
+        $barang = DB::table('barang')->where('id','!=',0)->get();
+        $pengguna = DB::table('users')->where('id','!=',0)->get();
+        $pemasok = DB::table('pemasok')->where('id','!=',0)->get();
+        return view('dashboard.transaksi.report',compact('pemasok','barang','pengguna'));
+    }
+
+    public function getReport(Request $request,$type)
+    {
+        $transaksi = new Transaksi();
+        $data = $transaksi->getReport($type,$request);
+        $pdf = PDF::loadview('dashboard.transaksi.report_pdf',['request'=>$request,'data'=>$data]);
+        return $pdf->download('laporan_transaksi_inventory_'.$request->start_date.' - '.$request->end_date.'.pdf');
+       
     }
 
     public function createTranskasiMasuk(Request $request)
