@@ -11,6 +11,7 @@
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
+                        @if(Auth::user()->role == 'admin')
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{url('pengguna')}}" aria-expanded="false">
@@ -25,13 +26,7 @@
                                 <span class="hide-menu">Pemasok</span>
                             </a>
                         </li>
-                       <!--  <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="{{url('sopir')}}" aria-expanded="false">
-                                <i class="fa fa-users"></i>
-                                <span class="hide-menu">Pelanggan</span>
-                            </a>
-                        </li> -->
+                        @endif
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{url('kategori')}}" aria-expanded="false">
