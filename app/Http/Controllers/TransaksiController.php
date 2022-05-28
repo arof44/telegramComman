@@ -83,6 +83,7 @@ class TransaksiController extends Controller
 
     public function getReport(Request $request,$type)
     {
+        //return $request->all();
         $transaksi = new Transaksi();
         $data = $transaksi->getReport($type,$request);
         $pdf = PDF::loadview('dashboard.transaksi.report_pdf',['request'=>$request,'data'=>$data]);

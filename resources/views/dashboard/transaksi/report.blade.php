@@ -51,7 +51,7 @@
                                       <div class="form-group first">
                                        <label for="username">Pemasok</label>
                                        
-                                                <select class="form-control" name="id_user" required>
+                                                <select class="form-control" name="id_pemasok" required>
                                                     <option value="all">Semua</option>
                                                     @foreach($pemasok as $as => $pItem)
                                                         <option value="{{$pItem->id}}">
@@ -64,7 +64,7 @@
                                       <div class="form-group first">
                                         <label for="username">Barang</label>
                                        
-                                                <select class="form-control" name="id_user" required>
+                                                <select class="form-control" name="id_barang" required>
                                                     <option value="all">Semua</option>
                                                     @foreach($barang as $as => $pItem)
                                                         <option value="{{$pItem->id}}">
@@ -116,7 +116,7 @@
                                       <div class="form-group first">
                                         <label for="username">Barang</label>
                                        
-                                                <select class="form-control" name="id_user" required>
+                                                <select class="form-control" name="id_barang" required>
                                                     <option value="all">Semua</option>
                                                     @foreach($barang as $as => $pItem)
                                                         <option value="{{$pItem->id}}">

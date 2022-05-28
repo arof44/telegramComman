@@ -15,7 +15,7 @@
 		<h5>Laporan Transaksi Inventory </h4>
 		<!-- <h6> Sistem Informasi Monitoring Material --> <a target="_blank" href="{url('/')}}">{{url('/')}}</a></h5>
 	</center>
- 
+ @if(count($data['masuk']) > 0)
  	<center>
 		<h5>Transaksi Masuk</h4>
 	</center>
@@ -43,7 +43,8 @@
                                                 @endforeach
                                             </tbody>
 	</table>
-
+@endif
+ @if(count($data['keluar']) > 0)
 	<center>
 		<h5>Transaksi Keluar</h4>
 	</center>
@@ -71,7 +72,7 @@
                                                 @endforeach
                                             </tbody>
 	</table>
-
+@endif
  
 </body>
 </html>
