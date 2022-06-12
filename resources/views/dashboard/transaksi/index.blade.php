@@ -34,7 +34,7 @@
             @if($message=Session::get('success'))
             <div class="alert bg-teal" role="alert">
                 <p align="center" style="color: green">  
-                    <em class="fa fa-lg fa-check">&nbsp;</em>  {{$message}}
+                    <em class="fa fa-lg fa-check">&nbsp;</em>  {{$message}} <br> {{Session::get('peringatan')}}
                 </p>
             </div>
             @endif

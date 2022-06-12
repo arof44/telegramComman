@@ -4,6 +4,8 @@ namespace App\Models;
 use DB;
 use Carbon\Carbon;
 use Auth;
+use App\Notifications\TelegramNotification;
+use Session;
 class Transaksi 
 {
 	public function get()
@@ -42,6 +44,7 @@ class Transaksi
 
     public function createTranskasiKeluar($request)
     {
+        Session::forget('peringatan');
         $no =strtotime(date('Y-m-d H:i:s'));
         $data = DB::table('transaksi')->insertGetId([
             'no_transaksi'=>$no,
@@ -52,7 +55,7 @@ class Transaksi
         ]);
         $grandtotal = 0;
         foreach ($request->id_barang as $key => $value) {
-            $barang = DB::table('barang')->where('id',$value)->select('harga')->first();
+            $barang = DB::table('barang')->where('id',$value)->select('harga','nama')->first();
             $grandtotalSub = $request->qty[$key] * $barang->harga;
             $item = DB::table('transaksi_item')->insert([
                 'id_transaksi'=>$data,
@@ -78,12 +81,14 @@ class Transaksi
             $stokKeluar =  DB::table('barang_stock')->where('id_barang',$value)->where('type','k')->sum('qty');
             $stokFix = $stokMasuk - $stokKeluar;
             DB::table('barang')->where('id',$value)->update(['stock'=>$stokFix]);
+            $this->stockNotif($stokFix,$barang->nama);
         }
         DB::table('transaksi')->where('id',$data)->update(['grandtotal'=>$grandtotal]);
     }
 
     public function updateTranskasiKeluar($request,$id)
     {
+        Session::forget('peringatan');
         DB::table('transaksi')->where('id',$id)->update([
             //'no_transaksi'=>$no,
             'tanggal'=>$request->date_trs,
@@ -95,7 +100,7 @@ class Transaksi
         DB::table('barang_stock')->where('id_transaksi',$id)->delete();
         $grandtotal = 0;
         foreach ($request->id_barang as $key => $value) {
-            $barang = DB::table('barang')->where('id',$value)->select('harga')->first();
+            $barang = DB::table('barang')->where('id',$value)->select('harga','nama')->first();
             $grandtotalSub = $request->qty[$key] * $barang->harga;
             $item = DB::table('transaksi_item')->insert([
                 'id_transaksi'=>$id,
@@ -121,12 +126,14 @@ class Transaksi
             $stokKeluar =  DB::table('barang_stock')->where('id_barang',$value)->where('type','k')->sum('qty');
             $stokFix = $stokMasuk - $stokKeluar;
             DB::table('barang')->where('id',$value)->update(['stock'=>$stokFix]);
+            $this->stockNotif($stokFix,$barang->nama);
         }
         DB::table('transaksi')->where('id',$id)->update(['grandtotal'=>$grandtotal]);
     }
 
     public function createTranskasiMasuk($request)
     {
+        Session::forget('peringatan');
         $no =strtotime(date('Y-m-d H:i:s'));
         $data = DB::table('transaksi')->insertGetId([
             'no_transaksi'=>$no,
@@ -138,7 +145,7 @@ class Transaksi
         ]);
         $grandtotal = 0;
         foreach ($request->id_barang as $key => $value) {
-            $barang = DB::table('barang')->where('id',$value)->select('harga')->first();
+            $barang = DB::table('barang')->where('id',$value)->select('harga','nama')->first();
             $grandtotalSub = $request->qty[$key] * $barang->harga;
             $item = DB::table('transaksi_item')->insert([
                 'id_transaksi'=>$data,
@@ -164,12 +171,14 @@ class Transaksi
             $stokKeluar =  DB::table('barang_stock')->where('id_barang',$value)->where('type','k')->sum('qty');
             $stokFix = $stokMasuk - $stokKeluar;
             DB::table('barang')->where('id',$value)->update(['stock'=>$stokFix]);
+            $this->stockNotif($stokFix,$barang->nama);
         }
         DB::table('transaksi')->where('id',$data)->update(['grandtotal'=>$grandtotal]);
     }
 
     public function updateTranskasiMasuk($request,$id)
     {
+        Session::forget('peringatan');
         DB::table('transaksi')->where('id',$id)->update([
            // 'no_transaksi'=>$no,
             'tanggal'=>$request->date_trs,
@@ -182,7 +191,7 @@ class Transaksi
         DB::table('barang_stock')->where('id_transaksi',$id)->delete();
         $grandtotal = 0;
         foreach ($request->id_barang as $key => $value) {
-            $barang = DB::table('barang')->where('id',$value)->select('harga')->first();
+            $barang = DB::table('barang')->where('id',$value)->select('harga','nama')->first();
             $grandtotalSub = $request->qty[$key] * $barang->harga;
             $item = DB::table('transaksi_item')->insert([
                 'id_transaksi'=>$id,
@@ -208,6 +217,7 @@ class Transaksi
             $stokKeluar =  DB::table('barang_stock')->where('id_barang',$value)->where('type','k')->sum('qty');
             $stokFix = $stokMasuk - $stokKeluar;
             DB::table('barang')->where('id',$value)->update(['stock'=>$stokFix]);
+            $this->stockNotif($stokFix,$barang->nama);
         }
         DB::table('transaksi')->where('id',$id)->update(['grandtotal'=>$grandtotal]);
     }
@@ -261,5 +271,78 @@ class Transaksi
             $arr = ['keluar'=>[],'masuk'=>$masukArr];
             return $arr;
         }
+    }
+
+    public function stockNotif($stock,$nama_barang)
+    {
+        $result = 'tidak_perlu';
+        if($stock < 5)
+        {
+            $detTele = $this->teleUpdate();
+            if($detTele['result'] == 'success'){
+                $result = 'perlu';
+                $data = ['stock'=>$stock,'nama_barang'=>$nama_barang];
+                $this->sendNotifTele($data);
+            }elseif($detTele['result'] == 'not_set'){
+                $result = $delete['result'];
+                Session::put('peringatan','Usernam telegram anda belum di tentukan!');
+            }else{
+                $result = $delete['result'];
+                Session::put('peringatan','Usernam telegram anda belum memulai obrolan dengan bot!');
+            }
+        }
+    }
+
+    public function teleUpdate()
+    {
+        $urlTele = 'https://api.telegram.org/bot5580120648:AAETdJCzjNZgqcr08i_urYPNZtHznLTQP4g/getUpdates';
+        // persiapkan curl
+        $ch = curl_init(); 
+        // set url 
+        curl_setopt($ch, CURLOPT_URL, $urlTele);
+        // return the transfer as a string 
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+        // $output contains the output string 
+        $output = curl_exec($ch); 
+        // tutup curl 
+        curl_close($ch);      
+        // menampilkan hasil curl
+        $arrTele = json_decode($output,true);
+        $username = Auth::user()->username_telegram;
+        $result = 'not_found';
+        $arr = [];
+        $arr['result']=$result;
+        $arr['username']=$username;
+        if($username != NULL)
+        {
+            $arr = ['result'=>$result,'username'=>$username];
+            for ($i=0; $i < count($arrTele['result']); $i++) { 
+                $got = $arrTele['result'][$i]['message']['chat']['username'];
+                $idTele = $arrTele['result'][$i]['message']['chat']['id'];
+                if(isset($got)){
+                    if($got == $username){
+                        $result = 'success';
+                        $arr['result']=$result;
+                        $arr['username']=$username;
+                        DB::table('users')->where('id',Auth::user()->id)->update(['chat_id'=>$idTele]);
+                        break;
+                    }
+                }
+            }
+        }else{
+            $result = 'not_set';
+            $arr['result']=$result;
+            $arr['username']=$username;
+        }
+        return $arr;
+    }
+
+    public function sendNotifTele($arr)
+    {
+         $pesan = [
+             'text' => 'Hallo '.Auth::user()->name.' stok '.$arr['nama_barang'].' kamu uda kurang dari 5 yakin '.$arr['stock'].'!',
+             'disable_notification' => true
+        ];
+        Auth::user()->notify(new TelegramNotification($pesan));
     }
 }

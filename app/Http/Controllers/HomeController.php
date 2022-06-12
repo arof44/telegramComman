@@ -21,8 +21,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+
     public function index()
     {
+       
        $barangHabis = DB::table('barang as br')
         ->join('barang_stock as brst','brst.id_barang','=','br.id')
         ->where('brst.type','k')

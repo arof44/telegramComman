@@ -22,6 +22,7 @@ class Pengguna
     		'name'=>$request->name,
     		'email'=>$request->email,
             'role'=>$request->role,
+            'username_telegram'=>$request->username_telegram,
     		'password'=>bcrypt($request->password),
     		'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString()
     	]);
@@ -34,6 +35,7 @@ class Pengguna
     		'name'=>$request->name,
     		'email'=>$request->email,
             'role'=>$request->role,
+            'username_telegram'=>$request->username_telegram,
     		'updated_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString()
     	]);
     	if($request->password != NULL){

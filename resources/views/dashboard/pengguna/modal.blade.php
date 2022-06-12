@@ -14,6 +14,10 @@
                         <label for="username">Nama Lengkap</label>
                         <input type="text" class="form-control" placeholder="Juan Kartolo" id="username" name="name" required value="{{$item->name}}">
                       </div>
+                       <div class="form-group first">
+                        <label for="username">Username Telegram</label>
+                        <input type="text" class="form-control" placeholder="juankartolo" id="username" name="username_telegram" value="{{$item->username_telegram}}">
+                      </div>
                       <div class="form-group first">
                         <label for="username">Role</label>
                         <select class="form-control" name="role" required>

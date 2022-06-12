@@ -25,9 +25,13 @@ Route::get('/', function () {
      return redirect('login');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard.home');
-// });
+Route::get('/telegram', function () {
+    //  $arr = [
+    //      'text' => 'Hello, world!',
+    //      'disable_notification' => true
+    //  ];
+    // return new App\Notifications\TelegramNotification($arr);
+});
 
 
 Auth::routes();
