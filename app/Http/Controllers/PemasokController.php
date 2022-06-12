@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pemasok;
+use Auth;
 class PemasokController extends Controller
 {
     /**
@@ -13,7 +14,9 @@ class PemasokController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        if(Auth::check()){
+            $this->middleware('auth');
+        }
     }
 
     /**

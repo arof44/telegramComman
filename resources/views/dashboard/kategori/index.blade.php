@@ -16,6 +16,7 @@
                           </nav>
                         <h1 class="mb-0 fw-bold">Kategori</h1> 
                     </div>
+                    @if(Auth::check())
                      <div class="col-6">
                         <div class="text-end upgrade-btn">
                             <a href="#" class="btn btn-primary text-white" 
@@ -24,6 +25,7 @@
                             </a>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
             @if($message=Session::get('error'))
@@ -59,6 +61,7 @@
                                                 <th scope="row">{{$key+1}}</th>
                                                 <td>{{$item->nama}}</td>
                                                 <td>
+                                                     @if(Auth::check())
                                                     <a href="#" class="btn-info btn-sm"
                                                     data-bs-toggle="modal" 
                                                     data-bs-target="#editKategori{{$item->id}}">
@@ -70,6 +73,7 @@
                                                     data-bs-target="#deleteKategori{{$item->id}}">
                                                         <i class="fa fa-trash" style="color: white;"></i>
                                                     </a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                             <!-- modal editKategori-->

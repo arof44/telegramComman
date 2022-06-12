@@ -38,7 +38,11 @@
                         <!-- Search -->
                         <!-- ============================================================== -->
                         <li class="nav-item search-box"> 
-                           Selamat Datang {{Auth::user()->name}}
+                           @if(Auth::check())
+                            Selamat Datang {{Auth::user()->name}}
+                           @else
+                            Selamat Datang
+                           @endif
                         </li>
                     </ul>
                     <!-- ============================================================== -->
@@ -49,6 +53,7 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
+                            @if(Auth::check())
                            <a href="#" class="btn btn-info btn-sm text-white" 
                               onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">
@@ -57,6 +62,11 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
+                            @else
+                            <a href="{{url('login')}}" class="btn btn-info btn-sm text-white">
+                                <i class="fa fa-user"></i>&nbsp; Login Admin
+                            </a>
+                            @endif
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->

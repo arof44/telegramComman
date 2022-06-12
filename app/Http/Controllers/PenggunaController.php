@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pengguna;
+use Auth;
 class PenggunaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+       if(Auth::check()){
+            $this->middleware('auth');
+        }
     }
 
     public function index()

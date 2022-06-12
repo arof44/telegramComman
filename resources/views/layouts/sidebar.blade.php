@@ -11,7 +11,7 @@
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
-                        @if(Auth::user()->role == 'admin')
+                       @if(Auth::check())
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{url('pengguna')}}" aria-expanded="false">

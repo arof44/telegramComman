@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kategori;
+use Auth;
 class KategoriController extends Controller
 {
     /**
@@ -13,7 +14,9 @@ class KategoriController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        if(Auth::check()){
+            $this->middleware('auth');
+        }
     }
 
     /**

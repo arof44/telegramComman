@@ -16,6 +16,7 @@
                           </nav>
                         <h1 class="mb-0 fw-bold">Barang</h1> 
                     </div>
+                    @if(Auth::check())
                     <div class="col-6">
                         <div class="text-end upgrade-btn">
                             <a href="#" class="btn btn-primary btn-sm text-white" 
@@ -24,6 +25,7 @@
                             </a>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
             @if($message=Session::get('error'))
@@ -65,6 +67,7 @@
                                                 <td>{{$item->nama_kategori}}</td>
                                                 <td>{{$item->stock}}</td>
                                                 <td>
+                                                     @if(Auth::check())
                                                     <a href="#" class="btn-info btn-sm"
                                                     data-bs-toggle="modal" 
                                                     data-bs-target="#editBarang{{$item->id}}">
@@ -76,6 +79,7 @@
                                                     data-bs-target="#deleteBarang{{$item->id}}">
                                                         <i class="fa fa-trash" style="color: white;"></i>
                                                     </a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                             <!-- modal editBarang-->

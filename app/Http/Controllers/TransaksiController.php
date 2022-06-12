@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use PDF;
 use App\Models\Transaksi;
 use DB;
+use Auth;
 class TransaksiController extends Controller
 {
     /**
@@ -15,7 +16,9 @@ class TransaksiController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        if(Auth::check()){
+            $this->middleware('auth');
+        }
     }
 
     /**

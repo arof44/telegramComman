@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Kategori;
+use Auth;
 class BarangController extends Controller
 {
     /**
@@ -14,7 +15,9 @@ class BarangController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        if(Auth::check()){
+            $this->middleware('auth');
+        }
     }
 
     /**

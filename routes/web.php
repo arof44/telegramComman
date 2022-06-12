@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PemasokController;
 use App\Http\Controllers\PelangganController;
@@ -22,16 +23,10 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 Route::get('/', function () {
-     return redirect('login');
+     return redirect('welcome');
 });
 
-Route::get('/telegram', function () {
-    //  $arr = [
-    //      'text' => 'Hello, world!',
-    //      'disable_notification' => true
-    //  ];
-    // return new App\Notifications\TelegramNotification($arr);
-});
+Route::get('/welcome', [WelcomeController::class, 'index']);
 
 
 Auth::routes();
