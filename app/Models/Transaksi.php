@@ -284,10 +284,10 @@ class Transaksi
                 $data = ['stock'=>$stock,'nama_barang'=>$nama_barang];
                 $this->sendNotifTele($data);
             }elseif($detTele['result'] == 'not_set'){
-                $result = $delete['result'];
+                $result = $detTele['result'];
                 Session::put('peringatan','Usernam telegram anda belum di tentukan!');
             }else{
-                $result = $delete['result'];
+                $result = $detTele['result'];
                 Session::put('peringatan','Usernam telegram anda belum memulai obrolan dengan bot!');
             }
         }
