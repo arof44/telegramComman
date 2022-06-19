@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Auth;
 class HomeController extends Controller
 {
@@ -52,7 +54,29 @@ class HomeController extends Controller
         ->orderBy('brst.created_at','DESC')
         ->limit(5)
         ->get();
-        return view('dashboard.home',compact('hasilBarangHabis','barangBaru'));
+
+        $tersedia = DB::table('barang')->where('stock','>',5)->count();
+        $segera = DB::table('barang')->where('stock','<',5)->count();
+        $habis = DB::table('barang')->where('stock','=',0)->count();
+        $dataBulan = [];
+        foreach ($range as $key => $date) {
+            $masuk = DB::table('transaksi as trs')
+                    ->join('barang_stock as bst','bst.id_transaksi','=','trs.id')
+                    ->where('trs.tanggal',$date->format('Y-m-d'))
+                    ->where('bst.type','m')
+                    ->sum('trs.grandtotal');
+            $keluar = DB::table('transaksi as trs')
+                    ->join('barang_stock as bst','bst.id_transaksi','=','trs.id')
+                    ->where('trs.tanggal',$date->format('Y-m-d'))
+                    ->where('bst.type','k')
+                    ->sum('trs.grandtotal');
+            $dataBulan[$key]['Y'] = $date->format('Y');
+            $dataBulan[$key]['m'] = $date->format('m');
+            $dataBulan[$key]['d'] = $date->format('d');
+            $dataBulan[$key]['masuk'] = $masuk;
+            $dataBulan[$key]['keluar'] = $masuk;
+        }
+        return view('dashboard.home',compact('hasilBarangHabis','barangBaru','tersedia','segera','habis','dataBulan'));
     }
 
        public function phparraysort($Array, $SortBy=array(), $Sort = SORT_REGULAR) {

@@ -30,6 +30,49 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
+                
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container bootstrap snippets bootdey">
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="mini-stat clearfix bg-facebook rounded">
+                <span class="mini-stat-icon"><i class="fa fa-facebook fg-facebook"></i></span>
+                <div class="mini-stat-info">
+                    <span>5,762</span>
+                    Facebook Like
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="mini-stat clearfix bg-twitter rounded">
+                <span class="mini-stat-icon"><i class="fa fa-twitter fg-twitter"></i></span>
+                <div class="mini-stat-info">
+                    <span>7,153</span>
+                    Twitter Followers
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="mini-stat clearfix bg-googleplus rounded">
+                <span class="mini-stat-icon"><i class="fa fa-google-plus fg-googleplus"></i></span>
+                <div class="mini-stat-info">
+                    <span>793</span>
+                    Google+ Posts
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="mini-stat clearfix bg-bitbucket rounded">
+                <span class="mini-stat-icon"><i class="fa fa-bitbucket fg-bitbucket"></i></span>
+                <div class="mini-stat-info">
+                    <span>8,932</span>
+                    Repository
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+
                 <!-- ============================================================== -->
                 <!-- Sales chart -->
                 <!-- ============================================================== -->
@@ -162,50 +205,14 @@ var chart = new CanvasJS.Chart("chartContainer", {
         name: "Masuk",
         showInLegend: true,
         markerSize: 0,
-        yValueFormatString: "$#,###k",
+        yValueFormatString: "",
         dataPoints: [       
-            { x: new Date(2014, 00, 01), y: 850 },
-            { x: new Date(2014, 01, 01), y: 889 },
-            { x: new Date(2014, 02, 01), y: 890 },
-            { x: new Date(2014, 03, 01), y: 899 },
-            { x: new Date(2014, 04, 01), y: 903 },
-            { x: new Date(2014, 05, 01), y: 925 },
-            { x: new Date(2014, 06, 01), y: 899 },
-            { x: new Date(2014, 07, 01), y: 875 },
-            { x: new Date(2014, 08, 01), y: 927 },
-            { x: new Date(2014, 09, 01), y: 949 },
-            { x: new Date(2014, 10, 01), y: 946 },
-            { x: new Date(2014, 11, 01), y: 927 },
-            { x: new Date(2015, 00, 01), y: 950 },
-            { x: new Date(2015, 01, 01), y: 998 },
-            { x: new Date(2015, 02, 01), y: 998 },
-            { x: new Date(2015, 03, 01), y: 1050 },
-            { x: new Date(2015, 04, 01), y: 1050 },
-            { x: new Date(2015, 05, 01), y: 999 },
-            { x: new Date(2015, 06, 01), y: 998 },
-            { x: new Date(2015, 07, 01), y: 998 },
-            { x: new Date(2015, 08, 01), y: 1050 },
-            { x: new Date(2015, 09, 01), y: 1070 },
-            { x: new Date(2015, 10, 01), y: 1050 },
-            { x: new Date(2015, 11, 01), y: 1050 },
-            { x: new Date(2016, 00, 01), y: 995 },
-            { x: new Date(2016, 01, 01), y: 1090 },
-            { x: new Date(2016, 02, 01), y: 1100 },
-            { x: new Date(2016, 03, 01), y: 1150 },
-            { x: new Date(2016, 04, 01), y: 1150 },
-            { x: new Date(2016, 05, 01), y: 1150 },
-            { x: new Date(2016, 06, 01), y: 1100 },
-            { x: new Date(2016, 07, 01), y: 1100 },
-            { x: new Date(2016, 08, 01), y: 1150 },
-            { x: new Date(2016, 09, 01), y: 1170 },
-            { x: new Date(2016, 10, 01), y: 1150 },
-            { x: new Date(2016, 11, 01), y: 1150 },
-            { x: new Date(2017, 00, 01), y: 1150 },
-            { x: new Date(2017, 01, 01), y: 1200 },
-            { x: new Date(2017, 02, 01), y: 1200 },
-            { x: new Date(2017, 03, 01), y: 1200 },
-            { x: new Date(2017, 04, 01), y: 1190 },
-            { x: new Date(2017, 05, 01), y: 1170 }
+            // { x: new Date(2014, 00, 01), y: 850 },
+            <?php foreach($dataBulan as $key => $dt){ ?>
+
+                { x: new Date(<?php echo $dataBulan[$key]['Y'] ?>, <?php echo $dataBulan[$key]['m'] ?>, <?php echo $dataBulan[$key]['d'] ?>), y: <?php echo $dataBulan[$key]['masuk'] ?> },
+
+            <?php } ?>
         ]
     },
     {
@@ -214,50 +221,13 @@ var chart = new CanvasJS.Chart("chartContainer", {
         name: "Keluar",
         showInLegend: true,
         markerSize: 0,
-        yValueFormatString: "$#,###k",
+        yValueFormatString: "",
         dataPoints: [
-            { x: new Date(2014, 00, 01), y: 1200 },
-            { x: new Date(2014, 01, 01), y: 1200 },
-            { x: new Date(2014, 02, 01), y: 1190 },
-            { x: new Date(2014, 03, 01), y: 1180 },
-            { x: new Date(2014, 04, 01), y: 1250 },
-            { x: new Date(2014, 05, 01), y: 1270 },
-            { x: new Date(2014, 06, 01), y: 1300 },
-            { x: new Date(2014, 07, 01), y: 1300 },
-            { x: new Date(2014, 08, 01), y: 1358 },
-            { x: new Date(2014, 09, 01), y: 1410 },
-            { x: new Date(2014, 10, 01), y: 1480 },
-            { x: new Date(2014, 11, 01), y: 1500 },
-            { x: new Date(2015, 00, 01), y: 1500 },
-            { x: new Date(2015, 01, 01), y: 1550 },
-            { x: new Date(2015, 02, 01), y: 1550 },
-            { x: new Date(2015, 03, 01), y: 1590 },
-            { x: new Date(2015, 04, 01), y: 1600 },
-            { x: new Date(2015, 05, 01), y: 1590 },
-            { x: new Date(2015, 06, 01), y: 1590 },
-            { x: new Date(2015, 07, 01), y: 1620 },
-            { x: new Date(2015, 08, 01), y: 1670 },
-            { x: new Date(2015, 09, 01), y: 1720 },
-            { x: new Date(2015, 10, 01), y: 1750 },
-            { x: new Date(2015, 11, 01), y: 1820 },
-            { x: new Date(2016, 00, 01), y: 2000 },
-            { x: new Date(2016, 01, 01), y: 1920 },
-            { x: new Date(2016, 02, 01), y: 1750 },
-            { x: new Date(2016, 03, 01), y: 1850 },
-            { x: new Date(2016, 04, 01), y: 1750 },
-            { x: new Date(2016, 05, 01), y: 1730 },
-            { x: new Date(2016, 06, 01), y: 1700 },
-            { x: new Date(2016, 07, 01), y: 1730 },
-            { x: new Date(2016, 08, 01), y: 1720 },
-            { x: new Date(2016, 09, 01), y: 1740 },
-            { x: new Date(2016, 10, 01), y: 1750 },
-            { x: new Date(2016, 11, 01), y: 1750 },
-            { x: new Date(2017, 00, 01), y: 1750 },
-            { x: new Date(2017, 01, 01), y: 1770 },
-            { x: new Date(2017, 02, 01), y: 1750 },
-            { x: new Date(2017, 03, 01), y: 1750 },
-            { x: new Date(2017, 04, 01), y: 1730 },
-            { x: new Date(2017, 05, 01), y: 1730 }
+            <?php foreach($dataBulan as $key => $dt){ ?>
+
+                { x: new Date(<?php echo $dataBulan[$key]['Y'] ?>, <?php echo $dataBulan[$key]['m'] ?>, <?php echo $dataBulan[$key]['d'] ?>), y: <?php echo $dataBulan[$key]['keluar'] ?> },
+
+            <?php } ?>
         ]
     }]
 });
