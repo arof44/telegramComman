@@ -52,7 +52,7 @@
 
               <input type="submit" value="Masuk" class="btn btn-block btn-info">
               <br>
-               <a href="{{url('/')}}" value="Masuk" class="btn btn-block btn-warning" style="color: white;">Halaman Pengurus</a>
+               <a href="{{url('/')}}" value="Masuk" class="btn btn-block btn-warning" style="color: white;">Halaman Pengurus</a>  
             </form>
           </div>
         </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BotManController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
@@ -24,6 +25,10 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', function () {
      return redirect('welcome');
+});
+
+Route::get('/testbot', function () {
+     return view('welcome');
 });
 
 Route::get('/welcome', [WelcomeController::class, 'index']);
@@ -77,3 +82,6 @@ Route::post('/update_create_keluar/{id}', [TransaksiController::class, 'updateTr
 //laporan
 Route::get('/laporan', [TransaksiController::class, 'report']);
 Route::post('/laporan_report/{type}', [TransaksiController::class, 'getReport']);
+
+//botman
+Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
