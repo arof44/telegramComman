@@ -74,14 +74,14 @@ class BotTaniConversation extends Conversation
     public function getDataReStock()
     {
         $data = DB::table('barang')->where('stock','<',5)->get();
-        $kata = 'Detail Data Stock Barang';
+        $kata = 'Detail Data Stock Barang'."\n";
         
         if(!$data->isEmpty())
         {
             foreach ($data as $key => $value) {
                 $kata .= $value->nama.' '.'Stock :'.$value->stock."\n";
             }
-            $kata .= 'Total barang yang perlu di restock sebanyak'.' '.count($data);
+            $kata .= 'Total barang yang perlu di restock sebanyak'.' '.count($data)."\n".' Silahkan ketik /start lagi dan kirim untuk memulai ulang';
         }else{
             $all = DB::table('barang')->get();
             $kata .= '\n Total barang : '.count($all)."\n";
