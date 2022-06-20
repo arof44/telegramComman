@@ -295,7 +295,7 @@ class Transaksi
 
     public function teleUpdate()
     {
-        $urlTele = 'https://api.telegram.org/bot5580120648:AAETdJCzjNZgqcr08i_urYPNZtHznLTQP4g/getUpdates';
+        $urlTele = 'https://api.telegram.org/bot5537539950:AAGOCmnfl7NYv9bCWmm7cYANn5w0e8JC3to/getUpdates';
         // persiapkan curl
         $ch = curl_init(); 
         // set url 
