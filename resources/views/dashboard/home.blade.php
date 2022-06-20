@@ -36,43 +36,45 @@
     <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="mini-stat clearfix bg-facebook rounded">
-                <span class="mini-stat-icon"><i class="fa fa-facebook fg-facebook"></i></span>
+                <span class="mini-stat-icon"><i class="fa fa-book"></i></span>
                 <div class="mini-stat-info">
-                    <span>5,762</span>
-                    Facebook Like
+                    <span>{{$habis}}</span>
+                    Barang Habis
                 </div>
             </div>
         </div>
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="mini-stat clearfix bg-twitter rounded">
-                <span class="mini-stat-icon"><i class="fa fa-twitter fg-twitter"></i></span>
+                <span class="mini-stat-icon"><i class="fa fa-book"></i></span>
                 <div class="mini-stat-info">
-                    <span>7,153</span>
-                    Twitter Followers
+                    <span>{{$segera}}</span>
+                    Barang Segera Habis
                 </div>
             </div>
         </div>
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="mini-stat clearfix bg-googleplus rounded">
-                <span class="mini-stat-icon"><i class="fa fa-google-plus fg-googleplus"></i></span>
+                <span class="mini-stat-icon"><i class="fa fa-book"></i></span>
                 <div class="mini-stat-info">
-                    <span>793</span>
-                    Google+ Posts
+                    <span>{{$tersedia}}</span>
+                    Barang Teresedia
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="mini-stat clearfix bg-bitbucket rounded">
-                <span class="mini-stat-icon"><i class="fa fa-bitbucket fg-bitbucket"></i></span>
+                <span class="mini-stat-icon"><i class="fa fa-exchange"></i></span>
                 <div class="mini-stat-info">
-                    <span>8,932</span>
-                    Repository
+                    <span>{{$transaksi}}</span>
+                    Total Transaksi
                 </div>
             </div>
         </div>        
     </div>
 </div>
-
+<br>
+<br>
+<br>
                 <!-- ============================================================== -->
                 <!-- Sales chart -->
                 <!-- ============================================================== -->

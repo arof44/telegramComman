@@ -54,6 +54,7 @@ class WelcomeController extends Controller
         $tersedia = DB::table('barang')->where('stock','>',5)->count();
         $segera = DB::table('barang')->where('stock','<',5)->count();
         $habis = DB::table('barang')->where('stock','=',0)->count();
+        $transaksi = DB::table('transaksi')->count();
 
         $preStart = Carbon::now('Asia/Jakarta')->format('Y');
         $start =  $preStart.'-01-01';
@@ -78,7 +79,7 @@ class WelcomeController extends Controller
             $dataBulan[$key]['masuk'] = $masuk;
             $dataBulan[$key]['keluar'] = $masuk;
         }
-        return view('dashboard.home',compact('hasilBarangHabis','barangBaru','tersedia','segera','habis','dataBulan'));
+        return view('dashboard.home',compact('hasilBarangHabis','barangBaru','tersedia','segera','habis','dataBulan','transaksi'));
     }
 
        public function phparraysort($Array, $SortBy=array(), $Sort = SORT_REGULAR) {
