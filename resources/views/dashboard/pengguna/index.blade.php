@@ -104,17 +104,17 @@
                 <div class="modal-body">
                      <div class="form-group first">
                         <label for="username">Nama Lengkap</label>
-                        <input type="text" class="form-control" placeholder="Juan Kartolo" id="username" name="name" required>
+                        <input type="text" class="form-control" placeholder="Nama" id="username" name="name" required>
                       </div>
                       <div class="form-group first">
                         <label for="username">Username Telegram</label>
-                        <input type="text" class="form-control" placeholder="juankartolo" id="username" name="username_telegram" >
+                        <input type="text" class="form-control" placeholder="userid" id="username" name="username_telegram" >
                       </div>
                       <div class="form-group first">
                         <label for="username">Role</label>
                         <select class="form-control" name="role" required>
                             <option value="admin">Admin</option>
-                            <option value="pengurus">Pengurus</option>
+                            <!-- <option value="pengurus">Pengurus</option> -->
                         </select>
                       </div>
                       <div class="form-group first">

@@ -340,7 +340,7 @@ class Transaksi
     public function sendNotifTele($arr)
     {
          $pesan = [
-             'text' => 'Hallo '.Auth::user()->name.' stok '.$arr['nama_barang'].' kamu uda kurang dari 5 yakin '.$arr['stock'].'!',
+             'text' => 'Hallo '.Auth::user()->name.' stok '.$arr['nama_barang'].' segera habis, sisa stok '.$arr['stock'].'!',
              'disable_notification' => true
         ];
         Auth::user()->notify(new TelegramNotification($pesan));

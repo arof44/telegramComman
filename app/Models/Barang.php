@@ -39,7 +39,7 @@ class Barang
 
     public function delete($id)
     {
-        $data = DB::table('barang')->where('id_barang')->where('id',$id)->delete();
+        $data = DB::table('barang')->where('id',$id)->delete();
         $barang = DB::table('barang_stock')->where('id_barang',$id)->update(['id_barang'=>0]);
         $transaksi = DB::table('transaksi_item')->where('id_barang',$id)->update(['id_barang'=>0]);
         return $data;

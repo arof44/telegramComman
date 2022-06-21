@@ -28,7 +28,7 @@ class BotManController extends Controller
  
         $botman->hears('/start|start|mulai', function (BotMan $bot) {
             $user = $bot->getUser();
-            $bot->reply('Assalamualaikum '.$user->getFirstName().', Selamat datang di BotSahabatTani!. ');
+            $bot->reply('Halo '.$user->getFirstName(). ', Selamat datang di BotKiosSahabatTani!. Untuk mendapatkan Notif Barang keluar silahkan start di bot ini @NotifSahabatTaniBot ');
             $bot->startConversation(new BotTaniConversation());
         })->stopsConversation();
  
@@ -47,14 +47,14 @@ class BotManController extends Controller
  
     public function getDataRingkasan()
     {
-        $tersedia = DB::table('barang')->where('stock','>',5)->count();
+        $tersedia = DB::table('barang')->where('stock','>',0)->count();
         $segera = DB::table('barang')->where('stock','<',5)->count();
         $habis = DB::table('barang')->where('stock','=',0)->count();
         $kata = 'Ringkasan Data Barang'."\n";
        
-            $kata .= 'Stock Tersedia : '.$tersedia."\n";
-            $kata .= 'Stock  Segera Habis: '.$segera."\n";
-            $kata .= 'Stock Habis : '.$habis."\n";
+            $kata .= 'Stock Tersedia : '.$tersedia.' Jenis'."\n";
+            $kata .= 'Stock  Segera Habis: '.$segera.' Jenis'."\n";
+            $kata .= 'Stock Habis : '.$habis.' Jenis'."\n";
             $kata .= "\n".' Silahkan ketik /start lagi dan kirim untuk memulai ulang';
         $rpl = str_replace(array("\n"), "\xA" , $kata);
         $send = urlencode($rpl);
@@ -65,7 +65,7 @@ class BotManController extends Controller
     public function getDataReStock()
     {
         $data = DB::table('barang')->where('stock','<',5)->get();
-        $kata = 'Detail Data Stock Barang'."\n";
+        $kata = 'Detail Data yang Perlu Restock Barang'."\n";
         
         if(!$data->isEmpty())
         {

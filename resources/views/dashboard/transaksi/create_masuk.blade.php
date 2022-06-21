@@ -49,7 +49,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                  <label for="username">Keterangan</label>
-                                                <input type="text" value="" placeholder="Bulanan stock" class="form-control" id="username" name="keterangan" required>
+                                                <input type="text" value="" placeholder="Isi Keterangan" class="form-control" id="username" name="keterangan" required>
                                             </div>
                                         </div>
                                 

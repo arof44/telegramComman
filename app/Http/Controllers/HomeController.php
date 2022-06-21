@@ -55,7 +55,7 @@ class HomeController extends Controller
         ->limit(5)
         ->get();
 
-        $tersedia = DB::table('barang')->where('stock','>',5)->count();
+        $tersedia = DB::table('barang')->where('stock','>',0)->count();
         $segera = DB::table('barang')->where('stock','<',5)->count();
         $habis = DB::table('barang')->where('stock','=',0)->count();
         $transaksi = DB::table('transaksi')->count();
