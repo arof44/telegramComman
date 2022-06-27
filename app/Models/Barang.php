@@ -11,6 +11,7 @@ class Barang
         ->join('kategori as kr','kr.id','=','br.id_kategori')
         ->where('br.id','!=',0)
         ->select('kr.nama as nama_kategori','br.*')
+        ->orderBy('br.created_at','DESC')
         ->get();
         return $data;
     }
