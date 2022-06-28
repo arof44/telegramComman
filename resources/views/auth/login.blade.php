@@ -52,7 +52,7 @@
               </div> -->
               <input type="submit" value="Masuk" class="btn btn-block btn-info">
               <br>
-              <a href="{{url('/')}}" style="text-decoration:none"><button class="btn btn-block btn-warning">Kembali</button></a>
+              <a href="{{url('/')}}" style="text-decoration: none;"><input type="button" value="Kembali" class="btn btn-block btn-warning"></a>
             </form>
           </div>
         </div>
