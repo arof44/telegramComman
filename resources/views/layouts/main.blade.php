@@ -13,7 +13,7 @@
     <title>Inventory Dashboard Page</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/Flexy-admin-lite/" />
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{url('flexy/assets/images/favicon.png')}}">
+    <link rel="icon" type="image/png" sizes="20x20" href="{{url('flexy/assets/images/kios-sahabat-tani.png')}}">
     <!-- Custom CSS -->
     <link href="{{url('flexy/assets/libs/chartist/dist/chartist.min.css')}}" rel="stylesheet">
     <link href="{{url('flexy/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css')}}" rel="stylesheet">
