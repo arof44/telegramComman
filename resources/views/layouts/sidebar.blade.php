@@ -45,7 +45,7 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{url('transaksi')}}" aria-expanded="false">
                                 <i class="fa fa-exchange"></i>
-                                <span class="hide-menu">Transaksi</span>
+                                <span class="hide-menu">Transaksi Barang</span>
                             </a>
                         </li>
                         <li class="sidebar-item">

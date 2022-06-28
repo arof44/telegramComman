@@ -9,14 +9,14 @@
                  <b class="logo-icon">
                      <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                      <!-- Dark Logo icon -->
-                     <img src="{{url('flexy/assets/images/kios-sahabat-tani.png')}}" alt="homepage" class="dark-logo" width="50" height="50"/>
+                     <img src="{{url('flexy/assets/images/kios-sahabat-tani.png')}}" alt="homepage" class="dark-logo" width="40" height="40"/>
                      <!-- Light Logo icon -->
                      <!-- <img src="{{url('flexy/assets/images/logo-light-icon.png')}}" alt="homepage" class="light-logo" /> -->
                  </b>
                  <!--End Logo icon -->
                  <!-- Logo text -->
                  <span class="logo-text">
-                     <b>Inventory</b>
+                     <b>Kios Sahabat Tani</b>
                  </span>
              </a>
              <!-- ============================================================== -->
@@ -40,7 +40,7 @@
                      @if(Auth::check())
                      Selamat Datang {{Auth::user()->name}}
                      @else
-                     Selamat Datang
+                     Selamat Datang di Inventory Kios Sahabat Tani
                      @endif
                  </li>
              </ul>
@@ -61,7 +61,7 @@
                          @csrf
                      </form>
                      @else
-                     <a href="{{url('login')}}" class="btn btn-info btn-sm text-white">
+                     <a href="{{url('login')}}" class="btn btn-success btn-sm text-white">
                          <i class="fa fa-user"></i>&nbsp; Login Admin
                      </a>
                      @endif

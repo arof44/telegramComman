@@ -16,7 +16,7 @@
 
   <!-- Style -->
   <link rel="stylesheet" href="{{url('page_login/css/style.css')}}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{url('flexy/assets/images/favicon.png')}}">
+  <link rel="icon" type="image/png" sizes="20x20" href="{{url('flexy/assets/images/kios-sahabat-tani.png')}}">
   <title>Inventory Login Page</title>
 </head>
 
@@ -29,7 +29,7 @@
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
-            <h3>Kios <strong>Sahabat Tani</strong></h3>
+            <h3>Admin <strong> Kios Sahabat Tani</strong></h3>
             <p class="mb-4">Masukkan email dan password yang terdaftar</p>
             @if($message=Session::get('error'))
             <div class="alert bg-teal" role="alert">
