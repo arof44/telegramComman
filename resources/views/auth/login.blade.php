@@ -24,7 +24,7 @@
 
 
   <div class="d-lg-flex half">
-    <div class="bg order-1 order-md-2" style="background-image: url('https://uploads-ssl.webflow.com/60edc0a8835d5b38bf11f03f/61cf0663a7e1e567a0d045a6_Inventory-Control-Techniques.jpeg');"></div>
+    <div class="bg order-1 order-md-2" style="background-image: url('flexy/assets/images/login.jpg');"></div>
     <div class="contents order-2 order-md-1">
       <div class="container">
         <div class="row align-items-center justify-content-center">

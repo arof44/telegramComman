@@ -53,7 +53,7 @@
                  <!-- ============================================================== -->
                  <li class="nav-item dropdown">
                      @if(Auth::check())
-                     <a href="#" class="btn btn-info btn-sm text-white" onclick="event.preventDefault();
+                     <a href="#" class="btn btn-danger btn-sm text-white" onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">
                          <i class="fa fa-sign-out"></i>&nbsp; Keluar sistem
                      </a>
