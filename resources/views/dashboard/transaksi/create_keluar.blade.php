@@ -66,13 +66,7 @@
 
                                         <div class="col-md-6">
                                             <label for="username">Penanggung Jawab</label>
-                                            <!-- <select class="form-control" name="id_user" required>
-                                                @foreach($pengguna as $as => $pItem)
-                                                <option value="{{$pItem->id}}">
-                                                    {{$pItem->name}}
-                                                </option>
-                                                @endforeach
-                                            </select> -->
+                                            
                                             <input type="text" value="{{Auth::user()->name}}" name="id_user" class="form-control" required readonly>
                                         </div>
 

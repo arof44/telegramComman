@@ -9,7 +9,7 @@
                  <b class="logo-icon">
                      <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                      <!-- Dark Logo icon -->
-                     <img src="{{url('flexy/assets/images/kios-sahabat-tani.png')}}" alt="homepage" class="dark-logo" width="40" height="40"/>
+                     <img src="{{url('flexy/assets/images/kios-sahabat-tani.png')}}" alt="homepage" class="dark-logo" width="40" height="40" />
                      <!-- Light Logo icon -->
                      <!-- <img src="{{url('flexy/assets/images/logo-light-icon.png')}}" alt="homepage" class="light-logo" /> -->
                  </b>
@@ -63,6 +63,9 @@
                      @else
                      <a href="{{url('login')}}" class="btn btn-success btn-sm text-white">
                          <i class="fa fa-user"></i>&nbsp; Login Admin
+                     </a>
+                     <a href="{{url('/')}}" class="btn btn-warning btn-sm text-white">
+                         <i class="fa fa-sign-out"></i>&nbsp; Home
                      </a>
                      @endif
                  </li>

@@ -24,8 +24,12 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 Route::get('/', function () {
-     return redirect('welcome');
+     return view('open');
 });
+
+// Route::get('/', function () {
+//      return redirect('welcome');
+// });
 
 Route::get('/testbot', function () {
      return view('welcome');

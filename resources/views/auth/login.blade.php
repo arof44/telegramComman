@@ -50,9 +50,11 @@
               <!-- <div class="d-flex mb-5 align-items-center">
                 <span class="ml-auto"><a href="#" onclick="return alert('Silahkan hubungi admin untuk mendapatkan password baru!')" class="forgot-pass">Lupa password?</a></span> 
               </div> -->
-              <input type="submit" value="Masuk" class="btn btn-block btn-info">
+              <input type="submit" value="Masuk" class="btn btn-block btn-success">
               <br>
-              <a href="{{url('/')}}" style="text-decoration: none;"><input type="button" value="Kembali" class="btn btn-block btn-warning"></a>
+              <a href="{{url('/welcome')}}" style="text-decoration: none;"><input type="button" value="Halaman Owner" class="btn btn-block btn-info"></a>
+              <br>
+              <a href="{{url('/')}}" style="text-decoration: none;"><input type="button" value="Home" class="btn btn-block btn-primary"></a>
             </form>
           </div>
         </div>
