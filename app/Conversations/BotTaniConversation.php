@@ -58,7 +58,16 @@ class BotTaniConversation extends Conversation
     public function getDataRingkasan()
     {
         $tersedia = DB::table('barang')->where('stock', '>', 0)->count();
-        $segera = DB::table('barang')->where('stock', '<', 5)->count();
+        // $segera = DB::table('barang')->where('stock', '<', 5)->count();
+        $segera = 0;
+        $segeraData = DB::table('barang')->get();
+        foreach ($segeraData as $seg) {
+            if (
+                $seg->stock > 0 && $seg->stock < 5
+            ) {
+                $segera++;
+            }
+        }
         $habis = DB::table('barang')->where('stock', '=', 0)->count();
         $kata = 'Ringkasan Data Barang' . "\n";
 
