@@ -52,7 +52,15 @@ class WelcomeController extends Controller
         ->limit(5)
         ->get();
         $tersedia = DB::table('barang')->where('stock','>',0)->count();
-        $segera = DB::table('barang')->where('stock','<',5)->count();
+        //$segera = DB::table('barang')->where('stock','<',5)->count();
+        $segera = 0;
+        $segeraData = DB::table('barang')->get();
+        foreach ($segeraData as $seg) {
+            if ($seg->stock > 0 && $seg->stock < 5
+            ) {
+                $segera++;
+            }
+        }
         $habis = DB::table('barang')->where('stock','=',0)->count();
         $transaksi = DB::table('transaksi')->count();
 
