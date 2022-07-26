@@ -35,7 +35,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-subtitle" style="font-weight: bold;">Tambah data transaksi</h3>
+                        <h3 class="card-subtitle" style="font-weight: bold;">Tambah data transaksi keluar</h3>
                         <form action="{{url('post_create_keluar')}}" method="post">
                             @csrf
                             <!-- Modal body -->
@@ -49,7 +49,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label for="username">Keterangan</label>
-                                            <input type="text" value="" placeholder="Isi Keterangan" class="form-control" id="username" name="keterangan" required>
+                                            <input type="text" value="-" placeholder="Isi Keterangan" class="form-control" id="username" name="keterangan" required>
                                         </div>
                                     </div>
 
@@ -60,10 +60,30 @@
                                     <input type="text" value="Barang keluar" class="form-control" id="username" name="keterangan_1" required readonly>
                                 </div>
 
+                                 <br>
+                                       <div class="form-group first">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                 <input type="text" value="" placeholder="Isi banyak data barang" class="form-control" id="qty_barang" >
+                                            </div>
+                                             <div class="col-md-6">
+                                                <a style="cursor: pointer;" onclick="setQty()" class="btn btn-success text-white">
+                                                    + Data barang
+                                                </a>
+                                                &nbsp;&nbsp;
+                                                <a href="{{url('add_transaksi_keluar/1')}}" class="btn btn-danger text-white">
+                                                   <i class="fa fa-trash"></i> Reset Data barang
+                                                </a>
+                                            </div>
+                                        </div>
+                                            
+                                       </div>
+                                       <br>
+                                       <br>
 
-                                <div class="form-group first">
+                               <div id="list_barang">
+                                    <div class="form-group first" id="awal_barang">
                                     <div class="row">
-
                                         <div class="col-md-6">
                                             <label for="username">Penanggung Jawab</label>
                                             
@@ -91,10 +111,9 @@
                                         </div>
                                         @endfor
                                     </div>
-
                                 </div>
-
                             </div>
+                        </div>
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer">
@@ -118,5 +137,20 @@
     $(document).ready(function() {
         $('.example').DataTable();
     });
+function setQty()
+{
+    var qty = $('#qty_barang').val();
+    if(parseInt(qty) <= 0 || qty == ''){
+        alert('isi qty dengan benar!');
+    }else{
+        var def = document.getElementById("awal_barang").innerHTML;
+        var item = def;
+        for (var i = 0; i < parseInt(qty) - 1; i++) {
+            item+= def;
+        }
+       // console.log(item);
+       $('#list_barang').append(item);
+    }
+}
 </script>
 @endsection

@@ -22,6 +22,7 @@ class Barang
             'id_kategori'=>$request->id_kategori,
             'nama'=>$request->nama,
             'harga'=>$request->harga,
+            'satuan'=>$request->satuan,
             'created_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString()
         ]);
         return $data;
@@ -33,6 +34,7 @@ class Barang
             'id_kategori'=>$request->id_kategori,
             'nama'=>$request->nama,
             'harga'=>$request->harga,
+            'satuan'=>$request->satuan,
             'updated_at'=>Carbon::now('Asia/Jakarta')->toDateTimeString()
         ]);
         return $data;

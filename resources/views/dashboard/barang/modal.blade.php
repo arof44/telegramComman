@@ -18,6 +18,10 @@
                         <label for="username">Harga</label>
                         <input type="text" class="form-control" placeholder="0856000998xx" value="{{$item->harga}}" id="username" name="harga" required>
                       </div>
+                      <div class="form-group first">
+                        <label for="username">Satuan</label>
+                        <input type="text" class="form-control" placeholder="Kilogram" id="username" name="satuan" required value="{{$item->satuan}}">
+                      </div>
                      <div class="form-group first">
                         <label for="username">Kategori</label>
                         <select class="form-control" name="id_kategori" required>

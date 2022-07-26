@@ -54,6 +54,7 @@
                                                 <th scope="col">Nama</th>
                                                 <th scope="col">Harga</th>
                                                 <th scope="col">Kategori</th>
+                                                <th scope="col">Satuan</th>
                                                 <th scope="col">Stock</th>
                                                 <th scope="col">Action</th>
                                             </tr>
@@ -65,6 +66,7 @@
                                                 <td>{{$item->nama}}</td>
                                                 <td>Rp.{{number_format($item->harga)}}</td>
                                                 <td>{{$item->nama_kategori}}</td>
+                                                <td>{{$item->satuan}}</td>
                                                 <td>{{$item->stock}}</td>
                                                 <td>
                                                      @if(Auth::check())
@@ -115,6 +117,10 @@
                       <div class="form-group first">
                         <label for="username">Harga</label>
                         <input type="text" class="form-control" placeholder="20000" id="username" name="harga" required>
+                      </div>
+                       <div class="form-group first">
+                        <label for="username">Satuan</label>
+                        <input type="text" class="form-control" placeholder="Kilogram" id="username" name="satuan" required>
                       </div>
                      <div class="form-group first">
                         <label for="username">Kategori</label>

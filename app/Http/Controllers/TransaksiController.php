@@ -91,6 +91,7 @@ class TransaksiController extends Controller
         //return $request->all();
         $transaksi = new Transaksi();
         $data = $transaksi->getReport($type, $request);
+        ///dd($data);
         $pdf = PDF::loadview('dashboard.transaksi.report_pdf', ['request' => $request, 'data' => $data]);
         return $pdf->download('laporan_transaksi_inventory_' . $request->start_date . ' - ' . $request->end_date . '.pdf');
     }

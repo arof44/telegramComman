@@ -17,10 +17,17 @@
                 <h1 class="mb-0 fw-bold">Transaksi</h1>
             </div>
             @if(Auth::check())
-            <div class="col-6">
+            <div class="col-3">
                 <div class="text-end upgrade-btn">
-                    <a href="#" class="btn btn-primary text-white" data-bs-toggle="modal" data-bs-target="#tambahTransaksi">
-                        Tambah Data Transaksi
+                    <a href="{{url('add_transaksi_masuk/1')}}" class="btn btn-primary text-white">
+                        + Data Transaksi Masuk
+                    </a>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="text-end upgrade-btn">
+                    <a href="{{url('add_transaksi_keluar/1')}}" class="btn btn-danger text-white">
+                        + Data Transaksi Keluar
                     </a>
                 </div>
             </div>

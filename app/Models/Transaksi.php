@@ -256,13 +256,20 @@ class Transaksi
             if ($data->id_barang != 'all') {
                 $pekK->where('trsi.id_barang', $data->id_user);
             }
-            $pekK->select('trs.*', 'us.name as nama_pengguna', 'brst.type', 'brst.qty as qty');
+            $pekK->select('trs.*', 'us.name as nama_pengguna','us.created_at as item', 'brst.type', 'brst.qty as qty');
             $pekK->groupBy('trs.id');
             $keluar = $pekK->get();
             $keluarArr =  json_decode(json_encode($keluar), true);
             foreach ($keluarArr as $key => $value) {
                 $qty = DB::table('barang_stock')->where('id_transaksi', $value['id'])->sum('qty');
                 $keluarArr[$key]['qty'] = $qty;
+                $items = DB::table('transaksi_item as trsi')->join('barang as br','br.id','=','trsi.id_barang')->where('id_transaksi',$value['id'])->get();
+                $yu = '<ul>';
+                foreach ($items as $i => $v) {
+                    $yu.='<li>'.$v->nama.' '.$v->qty.' '.$v->satuan.'</li>';
+                }
+                $yu.='</ul>';
+                $keluarArr[$key]['item'] =$yu;
             }
             $arr = ['masuk' => [], 'keluar' => $keluarArr];
             return $arr;
@@ -279,13 +286,20 @@ class Transaksi
             if ($data->id_barang != 'all') {
                 $pekM->where('trsi.id_barang', $data->id_user);
             }
-            $pekM->select('trs.*', 'pms.nama as nama_pemasok', 'brst.qty as qty');
+            $pekM->select('trs.*', 'pms.nama as nama_pemasok','pms.created_at as item', 'brst.qty as qty');
             $pekM->groupBy('trs.id');
             $masuk = $pekM->get();
             $masukArr =  json_decode(json_encode($masuk), true);
             foreach ($masukArr as $key => $value) {
                 $qty = DB::table('barang_stock')->where('id_transaksi', $value['id'])->sum('qty');
                 $masukArr[$key]['qty'] = $qty;
+                $items = DB::table('transaksi_item as trsi')->join('barang as br','br.id','=','trsi.id_barang')->where('id_transaksi',$value['id'])->get();
+                $yu = '<ul>';
+                foreach ($items as $i => $v) {
+                    $yu.='<li>'.$v->nama.' '.$v->qty.' '.$v->satuan.'</li>';
+                }
+                $yu.='</ul>';
+                $masukArr[$key]['item'] = $yu;
             }
             $arr = ['keluar' => [], 'masuk' => $masukArr];
             return $arr;

@@ -26,6 +26,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Keterangan</th>
+                <th scope="col">Item</th>
                 <th scope="col">Tanggal</th>
                 <th scope="col">Jumlah</th>
                 <th scope="col">Pemasok</th>
@@ -37,6 +38,7 @@
             <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$item['keterangan']}}</td>
+                <td><?php echo $item['item'] ?></td>
                 <td>{{$item['tanggal']}}</td>
                 <td>{{$item['qty']}}</td>
                 <td>{{$item['nama_pemasok']}}</td>
