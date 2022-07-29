@@ -57,6 +57,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Keterangan</th>
+                <th scope="col">Item</th>
                 <th scope="col">Tanggal</th>
                 <th scope="col">Jumlah</th>
                 <th scope="col">Penanggung Jawab</th>
@@ -68,6 +69,7 @@
             <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$item['keterangan']}}</td>
+                <td><?php echo $item['item'] ?></td>
                 <td>{{$item['tanggal']}}</td>
                 <td>{{$item['qty']}}</td>
                 <td>{{$item['nama_pengguna']}}</td>
@@ -77,7 +79,33 @@
         </tbody>
     </table>
     @endif
-
+    <center>
+        <h5>Stock Barang</h4>
+    </center>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Harga</th>
+                <th scope="col">Kategori</th>
+                <th scope="col">Satuan</th>
+                <th scope="col">Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($barang as $key => $item)
+            <tr>
+                <th scope="row">{{$key+1}}</th>
+                <td>{{$item->nama}}</td>
+                <td>Rp.{{number_format($item->harga)}}</td>
+                <td>{{$item->nama_kategori}}</td>
+                <td>{{$item->satuan}}</td>
+                <td>{{$item->stock}}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </body>
 
 </html>

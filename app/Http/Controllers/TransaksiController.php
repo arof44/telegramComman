@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use PDF;
 use App\Models\Transaksi;
+use App\Models\Barang;
 use DB;
 use Auth;
 
@@ -91,8 +92,10 @@ class TransaksiController extends Controller
         //return $request->all();
         $transaksi = new Transaksi();
         $data = $transaksi->getReport($type, $request);
+        $barang = new Barang();
+        $databrg = $barang->get();
         ///dd($data);
-        $pdf = PDF::loadview('dashboard.transaksi.report_pdf', ['request' => $request, 'data' => $data]);
+        $pdf = PDF::loadview('dashboard.transaksi.report_pdf', ['request' => $request, 'data' => $data, 'barang' => $databrg]);
         return $pdf->download('laporan_transaksi_inventory_' . $request->start_date . ' - ' . $request->end_date . '.pdf');
     }
 
