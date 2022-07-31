@@ -64,7 +64,7 @@
                                 <div class="form-group first">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="text" value="" placeholder="Isi banyak data barang" class="form-control" id="qty_barang">
+                                            <input type="text" value="" placeholder="Jumlah data barang yang ingin ditambah" class="form-control" id="qty_barang">
                                         </div>
                                         <div class="col-md-6">
                                             <a style="cursor: pointer;" onclick="setQty()" class="btn btn-success text-white">
@@ -82,31 +82,27 @@
                                 <br>
 
                                 <div id="list_barang">
+                                    <label for="username">Pemasok</label>
+                                    <select class="form-control" name="id_pemasok" required>
+                                        @foreach($pemasok as $as => $pItem)
+                                        <option value="{{$pItem->id}}">
+                                            {{$pItem->nama}}
+                                        </option>
+                                        @endforeach
+                                    </select><br><br>
                                     <div class="form-group first" id="awal_barang">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label for="username">Pemasok</label>
-                                                <select class="form-control" name="id_pemasok" required>
-                                                    @foreach($pemasok as $as => $pItem)
-                                                    <option value="{{$pItem->id}}">
-                                                        {{$pItem->nama}}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                @for($i=0;$i < $banyak; $i++) <div class="row">
+                                                @for($i=0; $i < $banyak; $i++) <div class="row">
                                                     <div class="col-md-6">
                                                         <label for="username">Barang</label>
                                                         <select class="form-control" name="id_barang[]" required>
                                                             @foreach($barang as $as => $pItem)
                                                             <option value="{{$pItem->id}}">
                                                                 {{$pItem->nama}}
-                                                            </option>
+                                                            </option><br>
                                                             @endforeach
                                                         </select>
-                                                        <br>
                                                     </div>
 
                                                     <div class="col-md-6">
