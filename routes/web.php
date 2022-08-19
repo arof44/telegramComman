@@ -12,6 +12,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\SatuanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,6 +69,9 @@ Route::get('/barang', [BarangController::class, 'index']);
 Route::get('/barang_delete/{id}', [BarangController::class, 'delete']);
 Route::post('/barang_insert', [BarangController::class, 'create']);
 Route::post('/barang_update/{id}', [BarangController::class, 'update']);
+//satuan
+Route::post('/satuan_insert', [SatuanController::class, 'create']);
+
 //transaksi
 Route::get('/transaksi', [TransaksiController::class, 'index']);
 Route::post('/add_trs_by_type', [TransaksiController::class, 'tangkapType']);
